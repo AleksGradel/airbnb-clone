@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div className='flex flex-col h-screen'>
-      <div className='flex-1 py-2 mx-2'>
+      <div className='flex-1 p-8'>
         <div className='text-3xl font-bold underline text-pink'>
           Airbnb
           <br />
