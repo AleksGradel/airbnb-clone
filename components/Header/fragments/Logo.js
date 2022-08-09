@@ -4,9 +4,11 @@ import LogoImage from '../../../public/logo.png'
 
 const Logo = () => {
   return (
-    <Link href='/'>
+    <div className='cursor-pointer'>
+      <Link href='/'>
         <Image src={LogoImage} width={40} height={40} alt="Airbnb" />
-    </Link>
+      </Link>
+    </div>
   )
 }
 
