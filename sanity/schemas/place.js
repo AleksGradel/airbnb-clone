@@ -9,6 +9,32 @@ export default {
             type: 'string',
         },
         {
+            name: 'host',
+            type: 'object',
+            fields: [
+              {
+                title: 'Host',
+                name: 'host',
+                type: 'reference',
+                to: [{type: 'host'}]
+              }
+            ]
+        },
+        {
+            title: 'Type of place',
+            name: 'type',
+            type: 'string',
+            options: {
+              list: [
+                {title: 'Entire place', value: 'Entire place'},
+                {title: 'Private room', value: 'Private room'},
+                {title: 'Hotel room', value: 'Hotel room'},
+                {title: 'Shared room', value: 'Shared room'}
+              ],
+              layout: 'radio'
+            }
+        },
+        {
             name: 'description',
             title: 'Description',
             type: 'string',
@@ -49,6 +75,21 @@ export default {
             of: [{
               type: 'image'
             }]
-          },
+        },
+        {
+            title: 'Number of guests',
+            name: 'guestNumber',
+            type: 'number'
+        },
+        {
+            title: 'Number of bedrooms',
+            name: 'bedroomNumber',
+            type: 'number'
+        },
+        {
+            title: 'Number of bathrooms',
+            name: 'bathroomNumber',
+            type: 'number'
+        },
     ]
 }
