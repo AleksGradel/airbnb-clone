@@ -1,10 +1,15 @@
 import { sanityClient } from '../../sanity'
 import groq from 'groq'
+import ImageGallery from '../../components/Place/ImageGallery'
 
 const Place = ({ place }) => {
+    console.log(place)
     return (
-        <div>
-            {place.title}
+        <div className='px-12 xl:px-24 pt-4'>
+            <p className='text-2xl font-bold'>{place.title}</p>
+            <div>
+              <ImageGallery mainImage={place.mainImage} images={place.images} />
+            </div>
         </div>
     )
 }
@@ -13,6 +18,8 @@ export const placeQuery = groq`
   *[_type == "place" && slug.current == $pageSlug][0] {
     _id,
     title,
+    mainImage,
+    images,
     slug,
 }`
 
