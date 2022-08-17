@@ -9,6 +9,21 @@ export default {
             type: 'string',
         },
         {
+            name: 'city',
+            title: 'City',
+            type: 'string',
+        },
+        {
+            name: 'state',
+            title: 'State',
+            type: 'string',
+        },
+        {
+            name: 'country',
+            title: 'Country',
+            type: 'string',
+        },
+        {
             name: 'description',
             title: 'Description',
             type: 'text',
@@ -54,8 +69,8 @@ export default {
             },
         },
         {
-            name: 'location',
-            title: 'Location',
+            name: 'geolocation',
+            title: 'Geo Location',
             type: 'geopoint',
         },
         {

@@ -1,7 +1,7 @@
 import { FaStar } from 'react-icons/fa'
 import Separator from '../fragments/Separator'
 
-function ReservationBox({ pricePerNight }) {
+function ReservationBox({ pricePerNight, checkinDate, checkoutDate }) {
   return (
     <div className='border border-grey-light rounded-lg shadow-md m-4 p-6'>
       <div className="flex flex-col">
@@ -20,11 +20,11 @@ function ReservationBox({ pricePerNight }) {
             <div className='flex flex-row text-sm'>
                 <div className='flex flex-col p-2 w-1/2 border-r border-grey'>
                     <span>Check in</span>
-                    <span>11/9/2022</span>
+                    <span>{checkinDate}</span>
                 </div>
                 <div className='flex flex-col p-2 w-1/2'>
                     <span>Checkout</span>
-                    <span>11/18/2022</span>
+                    <span>{checkoutDate}</span>
                 </div>
             </div>
             <div className='flex flex-col p-2 border-t border-grey text-sm'>

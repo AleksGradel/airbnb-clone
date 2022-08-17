@@ -1,13 +1,28 @@
 import { sanityClient } from '../../sanity'
 import groq from 'groq'
+import { useState } from 'react'
 import ImageGallery from '../../components/Place/ImageGallery'
 import Separator from '../../components/fragments/Separator'
 import Avatar from '../../components/fragments/Avatar'
 import ReservationBox from '../../components/Place/ReservationBox'
 import Description from '../../components/Place/Description'
+import Calendar from '../../components/Place/Calendar'
+
+import { format, addDays } from 'date-fns'
 
 const Place = ({ place }) => {
-    console.log(place)
+    let [dateRange, setDateRange] = useState([
+        {
+            startDate: new Date(),
+            endDate: addDays(new Date(), 7),
+            key: 'selection'
+        }
+    ])
+
+    console.log(dateRange)
+    console.log(dateRange[0].startDate)
+    console.log(JSON.stringify(dateRange[0].startDate))
+
     return (
         <div className='px-12 xl:px-24 pt-4'>
             <p className='text-2xl font-bold'>{place.title}</p>
@@ -33,9 +48,18 @@ const Place = ({ place }) => {
                 <Separator />
                 <Description description={place.description} />
                 <Separator />
+                <div className='my-8'>
+                  <span>{format(dateRange[0].startDate, "MM/dd/yyyy")} to {format(dateRange[0].endDate, "MM/dd/yyyy")}</span>
+                  <Calendar 
+                    range={dateRange} 
+                    setDateRange={item => setDateRange([item.selection])} />
+                </div>
               </div>
               <div className='basis-5/12 px-4'>
-                <ReservationBox pricePerNight={place.pricePerNight} />
+                <ReservationBox
+                  checkinDate={`${format(dateRange[0].startDate, "MM/dd/yyyy")}`}
+                  checkoutDate={`${format(dateRange[0].endDate, "MM/dd/yyyy")}`}
+                  pricePerNight={place.pricePerNight} />
               </div>
             </div>
             <div>
@@ -49,6 +73,9 @@ export const placeQuery = groq`
   *[_type == "place" && slug.current == $pageSlug][0] {
     _id,
     title,
+    city, 
+    state,
+    country,
     description,
     mainImage,
     images,
