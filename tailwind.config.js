@@ -15,5 +15,7 @@ module.exports = {
       'pink': '#ff385c',
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }

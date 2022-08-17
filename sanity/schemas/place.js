@@ -9,6 +9,11 @@ export default {
             type: 'string',
         },
         {
+            name: 'description',
+            title: 'Description',
+            type: 'text',
+        },
+        {
             name: 'host',
             type: 'object',
             fields: [
@@ -33,11 +38,6 @@ export default {
               ],
               layout: 'radio'
             }
-        },
-        {
-            name: 'description',
-            title: 'Description',
-            type: 'string',
         },
         {
             name: 'pricePerNight',
@@ -84,6 +84,11 @@ export default {
         {
             title: 'Number of bedrooms',
             name: 'bedroomNumber',
+            type: 'number'
+        },
+        {
+            title: 'Number of beds',
+            name: 'bedNumber',
             type: 'number'
         },
         {
