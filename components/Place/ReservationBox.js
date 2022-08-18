@@ -1,7 +1,7 @@
 import { FaStar } from 'react-icons/fa'
 import Separator from '../fragments/Separator'
 
-function ReservationBox({ pricePerNight, checkinDate, checkoutDate }) {
+function ReservationBox({ pricePerNight, checkinDate, checkoutDate, numberOfNights, totalPrice }) {
   return (
     <div className='border border-grey-light rounded-lg shadow-md m-4 p-6'>
       <div className="flex flex-col">
@@ -37,8 +37,8 @@ function ReservationBox({ pricePerNight, checkinDate, checkoutDate }) {
             <span className='flex justify-center my-4 text-sm text-grey'>You wont be charged yet</span>
         </div>
         <div className='flex justify-between mb-2'>
-            <span className='underline decoration-1'>${pricePerNight} x 9 nights</span>
-            <span>$1000</span>
+            <span className='underline decoration-1'>${pricePerNight} x ${numberOfNights} nights</span>
+            <span>${totalPrice}</span>
         </div>
         <div className='flex justify-between mb-4'>
             <span className='underline decoration-1'>Service fee</span>
@@ -47,7 +47,7 @@ function ReservationBox({ pricePerNight, checkinDate, checkoutDate }) {
         <Separator />
         <div className='flex justify-between mt-4 mb-2 font-bold'>
             <span>Total before taxes</span>
-            <span>$1000</span>
+            <span>${totalPrice}</span>
         </div>
       </div>
     </div>

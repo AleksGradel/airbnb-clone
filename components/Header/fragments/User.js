@@ -1,6 +1,6 @@
 import { FaBars, FaUserCircle } from 'react-icons/fa'
 import { Menu, Transition } from '@headlessui/react'
-import { forwardRef, Fragment } from 'react'
+import React, { Fragment, forwardRef, useRef } from 'react'
 import Link from 'next/link'
 
 const UserLink = forwardRef((props, ref) => {
@@ -18,6 +18,8 @@ const UserLink = forwardRef((props, ref) => {
 UserLink.displayName = 'UserLink'
 
 const User = () => {
+  const inputRef = useRef(null)
+
   return (
     <Menu as="div" className="relative inline-block text-left">
         <Menu.Button className='flex justify-between items-center p-1 gap-3 rounded-full border border-grey-light h-10 hover:shadow-md cursor-pointer'>
@@ -36,20 +38,20 @@ const User = () => {
           <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="py-1 flex flex-col gap-2">
               <Menu.Item>
-                <UserLink href='/signin'>Sign up</UserLink>
+                <UserLink href='/signin' ref={inputRef}>Sign up</UserLink>
               </Menu.Item>
               <Menu.Item>
-                <UserLink href='/login'>Log in</UserLink>
+                <UserLink href='/login' ref={inputRef}>Log in</UserLink>
               </Menu.Item>
               <hr className='border-xs border-grey-light my-1' />
               <Menu.Item>
-                <UserLink href='/'>Host your home</UserLink>
+                <UserLink href='/' ref={inputRef}>Host your home</UserLink>
               </Menu.Item>
               <Menu.Item>
-                <UserLink href='/'>Host an experience</UserLink>
+                <UserLink href='/' ref={inputRef}>Host an experience</UserLink>
               </Menu.Item>
               <Menu.Item>
-                <UserLink href='/'>Help</UserLink>
+                <UserLink href='/' ref={inputRef}>Help</UserLink>
               </Menu.Item>
             </div>
           </Menu.Items>
