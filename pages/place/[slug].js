@@ -24,13 +24,13 @@ const Place = ({ place }) => {
     const numberOfNights = differenceInDays(new Date(checkoutDate), new Date(checkinDate))
 
     return (
-        <div className='px-12 xl:px-24 pt-4'>
+        <div className='px-2 sm:px-12 xl:px-24 pt-4'>
             <p className='text-2xl font-bold'>{place.title}</p>
             <div>
               <ImageGallery mainImage={place.mainImage} images={place.images} />
             </div>
             <div className='flex'>
-              <div className='basis-7/12'>
+              <div className='basis-full sm:basis-7/12'>
                 <div className='flex justify-between my-4'>
                   <div>
                     <h2 className='text-xl font-bold'>{place.type} hosted by {place.hostName}</h2>
@@ -56,7 +56,7 @@ const Place = ({ place }) => {
                     setDateRange={item => setDateRange([item.selection])} />
                 </div>
               </div>
-              <div className='basis-5/12 px-4'>
+              <div className='hidden sm:block basis-5/12 px-4'>
                 <ReservationBox
                   checkinDate={checkinDate}
                   checkoutDate={checkoutDate}

@@ -5,7 +5,7 @@ function ReservationBox({ pricePerNight, checkinDate, checkoutDate, numberOfNigh
   return (
     <div className='border border-grey-light rounded-lg shadow-md m-4 p-6'>
       <div className="flex flex-col">
-        <div className="flex justify-between">
+        <div className="flex flex-col lg:flex-row justify-between">
             <div>
                 <span className='font-bold'>${pricePerNight} </span>
                 <span>night</span>
