@@ -13,10 +13,10 @@ const LocationMap = ({ latitude, longitude }) => {
           zoom: 11
         }}
         style={{width: 'auto', height: '50vw'}}
-        mapStyle="mapbox://styles/mapbox/light-v10"
+        mapStyle='mapbox://styles/mapbox/light-v10'
         mapboxAccessToken={MAPBOX_TOKEN}
       >
-        <Marker latitude={latitude} longitude={longitude} color="red" />
+        <Marker latitude={latitude} longitude={longitude} color='#ff385c' />
       </Map>
     </div>
   )

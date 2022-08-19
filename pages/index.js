@@ -1,11 +1,20 @@
 import groq from 'groq'
-import Link from 'next/link';
+import Link from 'next/link'
 import Tile from '../components/Tile/Tile'
 import { sanityClient, urlFor } from '../sanity';
+import { FaMap } from 'react-icons/fa'
 
 export default function Home({ places }) {
   return (
     <div className='flex flex-col h-screen w-full'>
+      <div className='fixed bottom-16 sm:bottom-24 w-full flex justify-center'>
+          <Link href='/mapView'>
+            <div className='cursor-pointer bg-grey-dark text-white font-bold py-4 px-6 rounded-full shadow hover:scale-105 flex flex-row items-center gap-2 text-sm'>
+                <span>Show map</span>
+                <FaMap />
+            </div>
+          </Link>
+      </div>
       <div className='p-12 xl:p-24 grid justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4'>
         {places.map((place) => place.slug && (
           <Link href={`place/${place.slug.current}`} key={place?._id}>
