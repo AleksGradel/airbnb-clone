@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@googlemaps/react-wrapper": "^1.1.35",
     "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^1.0.6",
     "@portabletext/react": "^1.0.6",
@@ -27,8 +26,7 @@
     "react-date-range": "^1.4.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
-    "react-map-gl": "^7.0.18",
-    "react-multi-carousel": "^2.8.2"
+    "react-map-gl": "^7.0.18"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
