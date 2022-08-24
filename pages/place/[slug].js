@@ -9,6 +9,7 @@ import ReservationBox from '../../components/Place/ReservationBox'
 import Description from '../../components/Place/Description'
 import Calendar from '../../components/Place/Calendar'
 import LocationMap from '../../components/Place/LocationMap'
+import Reviews from '../../components/Place/Reviews'
 
 const Place = ({ place }) => {
     const [dateRange, setDateRange] = useState([
@@ -22,6 +23,8 @@ const Place = ({ place }) => {
     const checkinDate = format(dateRange[0].startDate, "MM/dd/yyyy")
     const checkoutDate = format(dateRange[0].endDate, "MM/dd/yyyy")
     const numberOfNights = differenceInDays(new Date(checkoutDate), new Date(checkinDate))
+
+    console.log(place)
 
     return (
         <div className='px-2 sm:px-12 xl:px-24 pt-4'>
@@ -74,6 +77,8 @@ const Place = ({ place }) => {
                 <LocationMap longitude={place.geolocation.lng} latitude={place.geolocation.lat} />
               </div>
             }
+            <Separator />
+            <Reviews place={place} />
         </div>
     )
 }
@@ -99,6 +104,14 @@ export const placeQuery = groq`
     geolocation,
     "hostName": host.host->name,
     "hostAvatar": host.host->avatar,
+    reviews[] {
+      ...,
+      author-> {
+        _id,
+        name,
+        avatar
+      }  
+    }
 }`
 
 export async function getServerSideProps(pageContext) {
