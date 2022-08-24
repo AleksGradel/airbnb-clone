@@ -22,8 +22,6 @@ function MapView({ places }) {
             </span>
         </Marker>
     )), [])
-
-    console.log(popupInfo)
     
     return (
         <div>

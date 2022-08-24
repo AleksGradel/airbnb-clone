@@ -111,5 +111,13 @@ export default {
             name: 'bathroomNumber',
             type: 'number'
         },
-    ]
+        {
+            name: 'reviews',
+            title: 'Reviews',
+            type: 'array',
+            of: [
+                {type: 'review'}
+            ]
+        },
+    ],
 }

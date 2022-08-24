@@ -8,6 +8,7 @@ function Calendar({ range, setDateRange }) {
     return (
         <div className='w-full flex justify-center'>
             <DateRange
+                minDate={new Date()}
                 editableDateInputs={true}
                 onChange={setDateRange}
                 moveRangeOnFirstSelection={false}
