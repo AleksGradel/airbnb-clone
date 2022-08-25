@@ -10,6 +10,7 @@ import Description from '../../components/Place/Description'
 import Calendar from '../../components/Place/Calendar'
 import LocationMap from '../../components/Place/LocationMap'
 import Reviews from '../../components/Place/Reviews'
+import GuestsSelector from '../../components/fragments/GuestsSelector'
 
 const Place = ({ place }) => {
     const [dateRange, setDateRange] = useState([
@@ -24,10 +25,9 @@ const Place = ({ place }) => {
     const checkoutDate = format(dateRange[0].endDate, "MM/dd/yyyy")
     const numberOfNights = differenceInDays(new Date(checkoutDate), new Date(checkinDate))
 
-    console.log(place)
-
     return (
         <div className='px-2 sm:px-12 xl:px-24 pt-4'>
+            <GuestsSelector />
             <p className='text-2xl font-bold'>{place.title}</p>
             <div>
               <ImageGallery mainImage={place.mainImage} images={place.images} />
