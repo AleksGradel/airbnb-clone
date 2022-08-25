@@ -4,7 +4,7 @@ import { urlFor } from '../../sanity'
 const Tile = ({ img, title, price }) => {
   return (
     <div className='cursor-pointer mb-8'>
-      <div className='mb-4 rounded-md overflow-hidden'>
+      <div className='mb-4 rounded-xl overflow-hidden'>
         <Image 
             alt='Your next dream destination'
             src={urlFor(img).url()} 

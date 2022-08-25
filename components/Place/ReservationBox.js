@@ -32,23 +32,27 @@ function ReservationBox({ pricePerNight, checkinDate, checkoutDate, numberOfNigh
                 <span>1 guest</span>
             </div>
         </div>
-        <div className='my-2 flex flex-col'>
-            <button className='bg-pink rounded-lg py-3 text-white font-bold'>Reserve</button>
-            <span className='flex justify-center my-4 text-sm text-grey'>You wont be charged yet</span>
-        </div>
-        <div className='flex justify-between mb-2'>
-            <span className='underline decoration-1'>${pricePerNight} x ${numberOfNights} nights</span>
-            <span>${totalPrice}</span>
-        </div>
-        <div className='flex justify-between mb-4'>
-            <span className='underline decoration-1'>Service fee</span>
-            <span>$0</span>
-        </div>
-        <Separator />
-        <div className='flex justify-between mt-4 mb-2 font-bold'>
-            <span>Total before taxes</span>
-            <span>${totalPrice}</span>
-        </div>
+        { numberOfNights ? (
+            <div>
+                <div className='my-2 flex flex-col'>
+                    <button className='bg-pink rounded-lg py-3 text-white font-bold'>Reserve</button>
+                    <span className='flex justify-center my-4 text-sm text-grey'>You wont be charged yet</span>
+                </div>
+                <div className='flex justify-between mb-2'>
+                    <span className='underline decoration-1'>${pricePerNight} x ${numberOfNights} nights</span>
+                    <span>${totalPrice}</span>
+                </div>
+                <div className='flex justify-between mb-4'>
+                    <span className='underline decoration-1'>Service fee</span>
+                    <span>$0</span>
+                </div>
+                <Separator />
+                <div className='flex justify-between mt-4 mb-2 font-bold'>
+                    <span>Total before taxes</span>
+                    <span>${totalPrice}</span>
+                </div>
+            </div>
+        ) : null }
       </div>
     </div>
   )
