@@ -2,6 +2,8 @@ import Map, {Marker, Popup} from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { urlFor } from '../../sanity'
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN
 
@@ -41,10 +43,25 @@ function MapView({ places }) {
                     <Popup
                         longitude={popupInfo.geolocation.lng} 
                         latitude={popupInfo.geolocation.lat}
-                        onClose={() => setPopupInfo(null)}>
+                        closeButton='false'
+                        onClose={() => setPopupInfo(null)}
+                        className='w-80'>
                         <Link href={`place/${popupInfo.slug.current}`} key={popupInfo?._id}>
-                            <a>
-                                {popupInfo?.title}
+                            <a className='outline-none'>
+                            <Image 
+                                alt='Your next dream destination'
+                                src={urlFor(popupInfo?.mainImage).url()} 
+                                layout='responsive'
+                                objectFit='cover'
+                                width={100} 
+                                height={100} />
+                            <div className='flex flex-col mt-2'>
+                                <span className='font-bold text-md'>{popupInfo?.title}</span>
+                                <div>
+                                    <span className='font-bold'>${popupInfo?.pricePerNight}</span>
+                                    <span className='ml-1'>night</span>
+                                </div>
+                            </div>
                             </a>
                         </Link>
                     </Popup>
