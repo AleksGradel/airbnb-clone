@@ -10,7 +10,6 @@ import Description from '../../components/Place/Description'
 import Calendar from '../../components/Place/Calendar'
 import LocationMap from '../../components/Place/LocationMap'
 import Reviews from '../../components/Place/Reviews'
-import GuestsSelector from '../../components/fragments/GuestsSelector'
 
 const Place = ({ place }) => {
     const [dateRange, setDateRange] = useState([
@@ -27,7 +26,6 @@ const Place = ({ place }) => {
 
     return (
         <div className='px-2 sm:px-12 xl:px-24 pt-4'>
-            <GuestsSelector />
             <p className='text-2xl font-bold'>{place.title}</p>
             <div>
               <ImageGallery mainImage={place.mainImage} images={place.images} />
@@ -65,7 +63,7 @@ const Place = ({ place }) => {
                   checkoutDate={checkoutDate}
                   pricePerNight={place.pricePerNight} 
                   numberOfNights={numberOfNights} 
-                  totalPrice={place.pricePerNight * numberOfNights}/>
+                  totalPrice={place.pricePerNight * numberOfNights} />
               </div>
             </div>
             <Separator />
