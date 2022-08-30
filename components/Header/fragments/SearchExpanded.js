@@ -3,6 +3,7 @@ import { FaSearch } from 'react-icons/fa'
 import { Menu, Transition } from '@headlessui/react'
 import GuestsSelector from '../../fragments/GuestsSelector'
 import { useSelector } from 'react-redux'
+import Link from 'next/link'
 
 const SearchExpanded = () => {
     const [searchActive, setSearchActive] = useState(false)
@@ -54,7 +55,11 @@ const SearchExpanded = () => {
                         </Menu.Items>
                     </Transition>
                 </Menu>
-                <button className='flex justify-center items-center bg-pink text-sm text-white rounded-full px-4 h-14 gap-2 font-bold hover:bg-opacity-90 mr-1'><FaSearch /> Search</button>
+                <Link href='/searchResults'>
+                    <div className='flex justify-center items-center bg-pink text-sm text-white rounded-full px-4 h-14 gap-2 font-bold hover:bg-opacity-90 mr-1'>
+                        <FaSearch /> Search
+                    </div>
+                </Link>
             </div>    
         </div>
     )
