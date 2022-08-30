@@ -14,6 +14,11 @@ module.exports = {
       'grey-super-light': '#f8f8f8',
       'pink': '#ff385c',
     },
+    extend: {
+      transitionProperty: {
+        'height': 'height'
+      }
+    }
   },
   plugins: [
     require('@tailwindcss/line-clamp'),
