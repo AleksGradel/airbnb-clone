@@ -32,9 +32,10 @@ export const guestsSlice = createSlice({
         },
         removeInfant: (state) => {
             state.infants--
-        }
+        },
+        reset: () => initialState
     }
 })
 
-export const { addAdult, removeAdult, addChild, removeChild, addInfant, removeInfant } = guestsSlice.actions
+export const { addAdult, removeAdult, addChild, removeChild, addInfant, removeInfant, reset } = guestsSlice.actions
 export default guestsSlice.reducer

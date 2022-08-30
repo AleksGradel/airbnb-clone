@@ -1,10 +1,19 @@
 import groq from 'groq'
 import Link from 'next/link'
 import Tile from '../components/Tile/Tile'
-import { sanityClient, urlFor } from '../sanity';
+import { sanityClient, urlFor } from '../sanity'
 import { FaMap } from 'react-icons/fa'
+import { useEffect } from 'react'
+import { reset } from '../slices/guestsSlice'
+import { useDispatch } from 'react-redux'
 
 export default function Home({ places }) {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(reset())
+  }, [])
+
   return (
     <div className='flex flex-col h-screen w-full'>
       <div className='fixed bottom-16 sm:bottom-24 w-full flex justify-center'>
