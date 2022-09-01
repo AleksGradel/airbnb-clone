@@ -20,6 +20,7 @@ const SearchResults = ({ places }) => {
                                     <Tile
                                         img={result.mainImage ? urlFor(result.mainImage).url() : ''}
                                         price={result?.pricePerNight}
+                                        rates={result?.reviews}
                                         title={result?.title}/>
                                     </a>
                                 </Link>))

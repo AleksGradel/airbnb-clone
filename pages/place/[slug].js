@@ -59,6 +59,7 @@ const Place = ({ place }) => {
               </div>
               <div className='hidden sm:block basis-5/12 px-4'>
                 <ReservationBox
+                  rates={place.reviews}
                   checkinDate={checkinDate}
                   checkoutDate={checkoutDate}
                   pricePerNight={place.pricePerNight} 

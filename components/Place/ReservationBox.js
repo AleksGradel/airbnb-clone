@@ -4,11 +4,11 @@ import Separator from '../fragments/Separator'
 import GuestsSelector from '../fragments/GuestsSelector'
 import { Fragment } from 'react'
 import { useSelector } from 'react-redux'
+import Rating from '../fragments/Rating'
 
-function ReservationBox({ pricePerNight, checkinDate, checkoutDate, numberOfNights, totalPrice, maxGuestNumber }) {
+function ReservationBox({ pricePerNight, checkinDate, checkoutDate, numberOfNights, totalPrice, rates, maxGuestNumber }) {
     const totalGuestNumber = useSelector((state) => state.guests.total)
 
-    console.log(totalGuestNumber)
     return (
     <div className='border border-grey-light rounded-lg shadow-md m-4 p-6'>
       <div className='flex flex-col'>
@@ -17,9 +17,8 @@ function ReservationBox({ pricePerNight, checkinDate, checkoutDate, numberOfNigh
                 <span className='font-bold'>${pricePerNight} </span>
                 <span>night</span>
             </div>
-            <div className='flex flex-row mb-4'>
-                <span className='flex flex-row items-center font-bold'><FaStar/>4.9</span>
-                &nbsp;&#183;&nbsp;
+            <div className='flex flex-row mb-4 gap-2'>
+                <Rating rates={rates} />
                 <span className='text-grey underline decoration-1'>8 reviews</span>
             </div>
         </div>

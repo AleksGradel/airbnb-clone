@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import { urlFor } from '../../sanity'
+import Rating from '../fragments/Rating'
 
-const Tile = ({ img, title, price }) => {
+const Tile = ({ img, title, price, rates }) => {
   return (
-    <div className='cursor-pointer mb-8'>
+    <div className='cursor-pointer mb-8 p-1'>
       <div className='mb-4 rounded-xl overflow-hidden'>
         <Image 
             alt='Your next dream destination'
@@ -13,12 +14,9 @@ const Tile = ({ img, title, price }) => {
             width={100} 
             height={100} />
       </div>
-        <div className='flex flex-row justify-between'>
+        <div className='flex flex-row justify-between items-start'>
             <span className='font-bold'>{title}</span>
-            <span>Ocena</span>
-        </div>
-        <div>
-            <span>Data</span>
+            <Rating rates={rates} />
         </div>
         <div>
             <span className='font-bold'>${price} </span>

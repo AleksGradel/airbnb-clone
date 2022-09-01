@@ -18,7 +18,7 @@ export default function Home({ places }) {
     <div className='flex flex-col h-screen w-full'>
       <div className='fixed bottom-16 sm:bottom-24 w-full flex justify-center'>
           <Link href='/mapView'>
-            <div className='cursor-pointer bg-grey-dark text-white font-bold py-4 px-6 rounded-full shadow hover:scale-105 flex flex-row items-center gap-2 text-sm'>
+            <div className='z-50 cursor-pointer bg-grey-dark text-white font-bold py-4 px-6 rounded-full shadow hover:scale-105 flex flex-row items-center gap-2 text-sm'>
                 <span>Show map</span>
                 <FaMap />
             </div>
@@ -31,6 +31,7 @@ export default function Home({ places }) {
               <Tile
                 img={place.mainImage ? urlFor(place.mainImage).url() : ''}
                 price={place?.pricePerNight}
+                rates={place.reviews}
                 title={place?.title}/>
             </a>
           </Link>
@@ -47,7 +48,8 @@ export async function getStaticProps() {
       title,
       slug,
       mainImage,
-      pricePerNight
+      pricePerNight,
+      reviews[]
     }
   `);
 

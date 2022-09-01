@@ -18,7 +18,8 @@ export async function getStaticProps() {
         slug,
         mainImage,
         pricePerNight,
-        guestNumber
+        guestNumber,
+        reviews[]
       }
     `);
   
