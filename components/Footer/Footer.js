@@ -3,7 +3,7 @@ import Separator from '../fragments/Separator'
 
 const Footer = () => {
   return (
-    <div className='bottom-0 bg-grey-super-light border-t border-t-grey-light text-grey text-sm'>
+    <div className='w-full bottom-0 bg-grey-super-light border-t border-t-grey-light text-grey text-sm'>
       <div className='p-4 flex flex-col md:flex-row md:justify-between'>
         <div className='flex gap-2 pb-4 md:pb-0 pt-2 md:pt-0'>
             <span>© 2022</span>
