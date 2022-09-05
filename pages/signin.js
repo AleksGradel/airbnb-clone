@@ -1,7 +1,78 @@
+import { useState } from 'react'
+import { useAuth } from '../context/AuthContext'
+
+const Signin = () => {
+  const { user, signup } = useAuth()
+
+  const [data, setData] = useState({
+    email: '',
+    password: ''
+  })
+
+  const handleSignin = async (e) => {
+      e.preventDefault()
+
+      try {
+        await signup(data.email, data.password)
+      } catch (error) {
+        console.log(error)
+      }
+  }
+
+  console.log(data)
+
+  console.log(user)
+  return (
+    <div className='min-h-screen flex items-center justify-center w-full'>
+      <div className=' bg-white rounded-xl border border-grey w-1/2'>
+        <div className='flex justify-center border-b border-grey-light px-8 py-4'>
+          <span className='font-bold'>Sign up</span>
+        </div>
+        <div className='px-8 pt-6 pb-8 mb-4'>
+          <h1 className='font-bold text-lg pb-6'>Welcome to Airbnb clone</h1>
+          <form onSubmit={handleSignin}>
+            <div className='mb-4'>
+              <label className='block text-gray-700 text-sm font-bold mb-2'>
+                E-mail
+              </label>
+              <input 
+                className='appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' 
+                id='email' 
+                type='text'
+                onChange={(e) => setData({...data, email: e.target.value})}
+                value={data.email}
+                placeholder='E-mail' />
+            </div>
+            <div className='mb-6'>
+              <label className='block text-gray-700 text-sm font-bold mb-2'>
+                Password
+              </label>
+              <input 
+                className='appearance-none border border-red-500 rounded-lg w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline' 
+                id='password' 
+                type='password'
+                placeholder='******************'
+                onChange={(e) => setData({...data, password: e.target.value})}
+                value={data.password} />
+              <p className='text-red-500 text-xs italic'>Please choose a password.</p>
+            </div>
+            <div className='flex items-center justify-between'>
+              <button 
+                className='w-full font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline bg-pink text-white'>
+                Sign In
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function signin() {
   return (
-    <div>
-      Sign in
+    <div className='flex justify-center'>
+      <Signin />
     </div>
   )
 }

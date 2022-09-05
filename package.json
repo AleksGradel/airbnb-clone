@@ -17,6 +17,7 @@
     "@sanity/image-url": "^1.0.1",
     "@tailwindcss/line-clamp": "^0.4.0",
     "date-fns": "^2.29.1",
+    "firebase": "^9.9.4",
     "groq": "^2.29.3",
     "mapbox-gl": "^2.9.2",
     "next": "12.2.3",
