@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import DangerAlert from '../components/fragments/DangerAlert'
 import { useAuth } from '../context/AuthContext'
 
 const Signin = () => {
@@ -8,6 +9,7 @@ const Signin = () => {
     email: '',
     password: ''
   })
+  const [showAlert, setShowAlert] = useState(false)
 
   const handleSignin = async (e) => {
       e.preventDefault()
@@ -15,6 +17,7 @@ const Signin = () => {
       try {
         await signup(data.email, data.password)
       } catch (error) {
+        setShowAlert(true)
         console.log(error)
       }
   }
@@ -23,7 +26,12 @@ const Signin = () => {
 
   console.log(user)
   return (
-    <div className='min-h-screen flex items-center justify-center w-full'>
+    <div className='min-h-screen flex flex-col items-center justify-center w-full'>
+      { showAlert &&
+        <div className='w-1/2'>
+          <DangerAlert clickAction={() => setShowAlert(false)}/>
+        </div>
+      }
       <div className=' bg-white rounded-xl border border-grey w-1/2'>
         <div className='flex justify-center border-b border-grey-light px-8 py-4'>
           <span className='font-bold'>Sign up</span>
@@ -36,7 +44,7 @@ const Signin = () => {
                 E-mail
               </label>
               <input 
-                className='appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' 
+                className='appearance-none border border-grey rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' 
                 id='email' 
                 type='text'
                 onChange={(e) => setData({...data, email: e.target.value})}
@@ -48,13 +56,12 @@ const Signin = () => {
                 Password
               </label>
               <input 
-                className='appearance-none border border-red-500 rounded-lg w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline' 
+                className='appearance-none border border-grey rounded-lg w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline' 
                 id='password' 
                 type='password'
                 placeholder='******************'
                 onChange={(e) => setData({...data, password: e.target.value})}
                 value={data.password} />
-              <p className='text-red-500 text-xs italic'>Please choose a password.</p>
             </div>
             <div className='flex items-center justify-between'>
               <button 
