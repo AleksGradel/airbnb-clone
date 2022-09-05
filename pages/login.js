@@ -1,38 +1,77 @@
 import { useState } from 'react'
+import DangerAlert from '../components/fragments/DangerAlert'
+import { useAuth } from '../context/AuthContext'
+import { useRouter } from 'next/router'
 
 const Login = () => {
+  const router = useRouter()
+  const { user, login } = useAuth()
+  const [showAlert, setShowAlert] = useState(false)
+
   const [data, setData] = useState({
     email: '',
     password: ''
   })
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
-    console.log(data)
+
+      try {
+        await login(data.email, data.password)
+        router.push('/')
+      } catch (error) {
+        setShowAlert(true)
+        console.log(error)
+      }
   }
 
   return (
-    <div className='w-1/2'>
-      <form className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4' onSubmit={handleLogin}>
-        <div className='mb-4'>
-          <label className='block text-gray-700 text-sm font-bold mb-2'>
-            E-mail
-          </label>
-          <input className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' id='email' type='text' placeholder='E-mail' />
+    <div className='min-h-screen flex flex-col items-center justify-center w-full'>
+      { showAlert &&
+        <div className='w-1/2'>
+          <DangerAlert clickAction={() => setShowAlert(false)}/>
         </div>
-        <div className='mb-6'>
-          <label className='block text-gray-700 text-sm font-bold mb-2'>
-            Password
-          </label>
-          <input className='shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline' id='password' type='password' placeholder='******************' />
-          <p className='text-red-500 text-xs italic'>Please choose a password.</p>
+      }
+      <div className=' bg-white rounded-xl border border-grey w-1/2'>
+        <div className='flex justify-center border-b border-grey-light px-8 py-4'>
+          <span className='font-bold'>Log in</span>
         </div>
-        <div className='flex items-center justify-between'>
-          <button className='font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
-            Sign In
-          </button>
+        <div className='px-8 pt-6 pb-8 mb-4'>
+          <h1 className='font-bold text-lg pb-6'>Welcome to Airbnb clone</h1>
+          <form onSubmit={handleLogin}>
+            <div className='mb-4'>
+              <label className='block text-gray-700 text-sm font-bold mb-2'>
+                E-mail
+              </label>
+              <input 
+                className='appearance-none border border-grey rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' 
+                id='email' 
+                type='text'
+                onChange={(e) => setData({...data, email: e.target.value})}
+                value={data.email}
+                placeholder='E-mail' />
+            </div>
+            <div className='mb-6'>
+              <label className='block text-gray-700 text-sm font-bold mb-2'>
+                Password
+              </label>
+              <input 
+                className='appearance-none border border-grey rounded-lg w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline' 
+                id='password' 
+                type='password'
+                placeholder='******************'
+                onChange={(e) => setData({...data, password: e.target.value})}
+                value={data.password} />
+            </div>
+            <div className='flex items-center justify-between'>
+              <button 
+                className='w-full font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline bg-pink text-white'>
+                Log In
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   )
 }

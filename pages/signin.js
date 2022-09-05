@@ -1,9 +1,11 @@
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import DangerAlert from '../components/fragments/DangerAlert'
 import { useAuth } from '../context/AuthContext'
 
 const Signin = () => {
   const { user, signup } = useAuth()
+  const router = useRouter()
 
   const [data, setData] = useState({
     email: '',
@@ -16,15 +18,13 @@ const Signin = () => {
 
       try {
         await signup(data.email, data.password)
+        router.push('/login')
       } catch (error) {
         setShowAlert(true)
         console.log(error)
       }
   }
 
-  console.log(data)
-
-  console.log(user)
   return (
     <div className='min-h-screen flex flex-col items-center justify-center w-full'>
       { showAlert &&

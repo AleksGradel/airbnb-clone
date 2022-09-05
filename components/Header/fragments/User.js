@@ -2,6 +2,9 @@ import { FaBars, FaUserCircle } from 'react-icons/fa'
 import { Menu, Transition } from '@headlessui/react'
 import React, { Fragment, forwardRef, useRef } from 'react'
 import Link from 'next/link'
+import { useAuth } from '../../../context/AuthContext'
+import { useRouter } from 'next/router'
+import Separator from '../../fragments/Separator'
 
 const UserLink = forwardRef((props, ref) => {
     let { href, children, ...rest } = props
@@ -19,6 +22,8 @@ UserLink.displayName = 'UserLink'
 
 const User = () => {
   const inputRef = useRef(null)
+  const { user, logout } = useAuth()
+  const router = useRouter()
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -37,13 +42,20 @@ const User = () => {
         >
           <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="py-1 flex flex-col gap-2">
-              <Menu.Item>
-                <UserLink href='/signin' ref={inputRef}>Sign up</UserLink>
-              </Menu.Item>
-              <Menu.Item>
-                <UserLink href='/login' ref={inputRef}>Log in</UserLink>
-              </Menu.Item>
-              <hr className='border-xs border-grey-light my-1' />
+              { !user &&
+                <Menu.Item>
+                  <UserLink href='/signin' ref={inputRef}>Sign up</UserLink>
+                </Menu.Item>
+              }
+              {
+                !user &&
+                <Menu.Item>
+                  <UserLink href='/login' ref={inputRef}>Log in</UserLink>
+                </Menu.Item>
+              }
+              { !user &&
+                <Separator />
+              }
               <Menu.Item>
                 <UserLink href='/' ref={inputRef}>Host your home</UserLink>
               </Menu.Item>
@@ -53,6 +65,16 @@ const User = () => {
               <Menu.Item>
                 <UserLink href='/' ref={inputRef}>Help</UserLink>
               </Menu.Item>
+              { user && 
+                <Menu.Item>
+                  <div className='p-2 text-sm hover:bg-grey-super-light cursor-pointer'
+                    onClick={() => {
+                      logout()
+                      router.push('/login')
+                    }} 
+                    ref={inputRef}>Log out</div>
+                </Menu.Item>
+              }
             </div>
           </Menu.Items>
         </Transition>
