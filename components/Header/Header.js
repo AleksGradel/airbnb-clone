@@ -4,9 +4,11 @@ import LanguageSelector from './fragments/LanguageSelector'
 import User from './fragments/User'
 import { useEffect, useRef, useState } from 'react'
 import SearchExpanded from './fragments/SearchExpanded'
+import { useRouter } from 'next/router'
 
 function Header() {
   const [isExpanded, setIsExpanded] = useState(false)
+  const router = useRouter()
 
   const headerRef = useRef(null)
 
@@ -34,31 +36,39 @@ function Header() {
           <div className='hidden sm:flex'>
             <Logo />
           </div>
-          { !isExpanded 
-            ? <Search expandSearch={() => setIsExpanded(true)}/>
-            : (<div className='flex flex-row justify-center content-center gap-12 text-sm'>
-                <div>
-                  <span className='font-bold cursor-pointer underline underline-offset-8'>Stays</span>
-                </div>
-                <div>
-                  <span className='font-bold cursor-pointer hover:text-grey hover:underline hover:underline-offset-8'>
-                    Experiences
-                  </span>
-                </div>
-                <div>
-                  <span className='font-bold cursor-pointer hover:text-grey hover:underline hover:underline-offset-8'>
-                    Online Experiences
-                  </span>
-                </div>
-              </div>)
+          { router.pathname === '/reservation/[slug]'
+            ? null
+            : !isExpanded 
+              ? <Search expandSearch={() => setIsExpanded(true)}/>
+              : (<div className='flex flex-row justify-center content-center gap-12 text-sm'>
+                  <div>
+                    <span className='font-bold cursor-pointer underline underline-offset-8'>Stays</span>
+                  </div>
+                  <div>
+                    <span className='font-bold cursor-pointer hover:text-grey hover:underline hover:underline-offset-8'>
+                      Experiences
+                    </span>
+                  </div>
+                  <div>
+                    <span className='font-bold cursor-pointer hover:text-grey hover:underline hover:underline-offset-8'>
+                      Online Experiences
+                    </span>
+                  </div>
+                </div>)
           }
-          <div className='hidden sm:flex flex-row items-center gap-4 text-grey-dark'>
-              <div className='text-sm font-bold cursor-pointer rounded-full p-2 hover:bg-grey-super-light'>
-                  Become a host
+          {
+            router.pathname !== '/reservation/[slug]'
+            ? (
+              <div className='hidden sm:flex flex-row items-center gap-4 text-grey-dark'>
+                <div className='text-sm font-bold cursor-pointer rounded-full p-2 hover:bg-grey-super-light'>
+                    Become a host
+                </div>
+                <LanguageSelector />
+                <User />
               </div>
-              <LanguageSelector />
-              <User />
-          </div>
+            )
+            : null
+          }
         </div>
         { isExpanded && 
           <div className='flex flex-col h-1/2 justify-center w-full'>
