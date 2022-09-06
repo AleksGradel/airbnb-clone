@@ -6,7 +6,7 @@ import { Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import Rating from '../fragments/Rating'
 
-function ReservationBox({ pricePerNight, checkinDate, checkoutDate, numberOfNights, totalPrice, rates, maxGuestNumber }) {
+function ReservationBox({ pricePerNight, checkinDate, reserveAction, checkoutDate, numberOfNights, totalPrice, rates, maxGuestNumber }) {
     const totalGuestNumber = useSelector((state) => state.guests.total)
 
     return (
@@ -67,7 +67,11 @@ function ReservationBox({ pricePerNight, checkinDate, checkoutDate, numberOfNigh
         { numberOfNights ? (
             <div>
                 <div className='my-2 flex flex-col'>
-                    <button className='bg-pink rounded-lg py-3 text-white font-bold'>Reserve</button>
+                    <button
+                        onClick={reserveAction}
+                        className='bg-pink rounded-lg py-3 text-white font-bold'>
+                        Reserve
+                    </button>
                     <span className='flex justify-center my-4 text-sm text-grey'>You wont be charged yet</span>
                 </div>
                 <div className='flex justify-between mb-2'>

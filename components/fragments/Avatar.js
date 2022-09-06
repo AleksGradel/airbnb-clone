@@ -5,9 +5,9 @@ const Avatar = ({ image, alt }) => {
     <div>
       { image &&
         <img
-        className='w-14 h-14 rounded-full object-cover'
-        src={urlFor(image).url()} 
-        alt={alt}/>
+          className='w-14 h-14 rounded-full object-cover'
+          src={urlFor(image).url()} 
+          alt={alt}/>
       }
     </div>
   )

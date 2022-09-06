@@ -28,7 +28,7 @@ function Header() {
       ref={headerRef}
       className={`w-full sticky top-0 inset-x-0 z-10 border-b border-grey-light bg-white
                 ${isExpanded ? 'h-40' : 'h-20' } transition-height duration-100 ease-in`}>
-      <div className='flex flex-col items-center px-8'>
+      <div className='flex flex-col items-center px-2 sm:px-8'>
         <div className={`w-full h-20 flex flex-auto flex-row items-center
                         ${isExpanded ? 'justify-between' : 'justify-center sm:justify-between'}`}>
           <div className='hidden sm:flex'>

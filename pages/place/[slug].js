@@ -10,8 +10,12 @@ import Description from '../../components/Place/Description'
 import Calendar from '../../components/Place/Calendar'
 import LocationMap from '../../components/Place/LocationMap'
 import Reviews from '../../components/Place/Reviews'
+import { useAuth } from '../../context/AuthContext'
+import { useRouter } from 'next/router'
 
 const Place = ({ place }) => {
+    const { user } = useAuth() 
+    const router = useRouter()
     const [dateRange, setDateRange] = useState([
         {
             startDate: new Date(),
@@ -23,6 +27,12 @@ const Place = ({ place }) => {
     const checkinDate = format(dateRange[0].startDate, "MM/dd/yyyy")
     const checkoutDate = format(dateRange[0].endDate, "MM/dd/yyyy")
     const numberOfNights = differenceInDays(new Date(checkoutDate), new Date(checkinDate))
+
+    const handleReservation = () => {
+      user 
+      ? router.push(`/reservation/${place.slug.current}`)
+      : alert('Please, login to continue')
+    }
 
     return (
         <div className='px-2 sm:px-12 xl:px-24 pt-4'>
@@ -59,6 +69,7 @@ const Place = ({ place }) => {
               </div>
               <div className='hidden sm:block basis-5/12 px-4'>
                 <ReservationBox
+                  reserveAction={() => handleReservation()}
                   rates={place.reviews}
                   checkinDate={checkinDate}
                   checkoutDate={checkoutDate}
