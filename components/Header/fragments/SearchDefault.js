@@ -1,6 +1,6 @@
 import { FaSearch } from 'react-icons/fa'
 
-function Search({ expandSearch }) {
+function SearchDefault({ expandSearch }) {
   return (
     <div
       onClick={expandSearch}
@@ -13,4 +13,4 @@ function Search({ expandSearch }) {
   )
 }
 
-export default Search
+export default SearchDefault

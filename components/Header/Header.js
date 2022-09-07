@@ -1,16 +1,18 @@
 import Logo from './fragments/Logo'
-import Search from './fragments/Search'
+import SearchDefault from './fragments/SearchDefault'
 import LanguageSelector from './fragments/LanguageSelector'
 import User from './fragments/User'
 import { useEffect, useRef, useState } from 'react'
 import SearchExpanded from './fragments/SearchExpanded'
 import { useRouter } from 'next/router'
+import { useMediaQuery } from 'react-responsive'
+import SearchSmall from './fragments/SearchSmall'
 
 function Header() {
   const [isExpanded, setIsExpanded] = useState(false)
   const router = useRouter()
-
   const headerRef = useRef(null)
+  const isSmallDevice = useMediaQuery({ query: '(max-width: 768px)'})
 
   const handleClickOutsideHeader = (e) => {
     if ((headerRef.current) && !headerRef.current.contains(e.target)) {
@@ -25,59 +27,77 @@ function Header() {
     }
   }, [])
 
-  return (
-    <div 
-      ref={headerRef}
-      className={`w-full sticky top-0 inset-x-0 z-10 border-b border-grey-light bg-white
-                ${isExpanded ? 'h-40' : 'h-20' } transition-height duration-100 ease-in`}>
-      <div className='flex flex-col items-center px-2 sm:px-8'>
-        <div className={`w-full h-20 flex flex-auto flex-row items-center
-                        ${isExpanded ? 'justify-between' : 'justify-center sm:justify-between'}`}>
-          <div className='hidden sm:flex'>
-            <Logo />
-          </div>
-          { router.pathname === '/reservation/[slug]'
-            ? null
-            : !isExpanded 
-              ? <Search expandSearch={() => setIsExpanded(true)}/>
-              : (<div className='flex flex-row justify-center content-center gap-12 text-sm'>
-                  <div>
-                    <span className='font-bold cursor-pointer underline underline-offset-8'>Stays</span>
+  const DefaultHeader = () => {
+    return (
+      <div 
+        ref={headerRef}
+        className={`${isExpanded ? 'h-40' : 'h-20' } transition-height duration-100 ease-in`}>
+        <div className='flex flex-col items-center px-2 sm:px-8'>
+          <div className={`w-full h-20 flex flex-auto flex-row items-center
+                          ${isExpanded ? 'justify-between' : 'justify-center sm:justify-between'}`}>
+            <div className='hidden sm:flex'>
+              <Logo />
+            </div>
+            { router.pathname === '/reservation/[slug]'
+              ? null
+              : !isExpanded 
+                ? <SearchDefault expandSearch={() => setIsExpanded(true)}/>
+                : (<div className='flex flex-row justify-center content-center gap-12 text-sm'>
+                    <div>
+                      <span className='font-bold cursor-pointer underline underline-offset-8'>Stays</span>
+                    </div>
+                    <div>
+                      <span className='font-bold cursor-pointer hover:text-grey hover:underline hover:underline-offset-8'>
+                        Experiences
+                      </span>
+                    </div>
+                    <div>
+                      <span className='font-bold cursor-pointer hover:text-grey hover:underline hover:underline-offset-8'>
+                        Online Experiences
+                      </span>
+                    </div>
+                  </div>)
+            }
+            {
+              router.pathname !== '/reservation/[slug]'
+              ? (
+                <div className='hidden sm:flex flex-row items-center gap-4 text-grey-dark'>
+                  <div className='text-sm font-bold cursor-pointer rounded-full p-2 hover:bg-grey-super-light'>
+                      Become a host
                   </div>
-                  <div>
-                    <span className='font-bold cursor-pointer hover:text-grey hover:underline hover:underline-offset-8'>
-                      Experiences
-                    </span>
-                  </div>
-                  <div>
-                    <span className='font-bold cursor-pointer hover:text-grey hover:underline hover:underline-offset-8'>
-                      Online Experiences
-                    </span>
-                  </div>
-                </div>)
-          }
-          {
-            router.pathname !== '/reservation/[slug]'
-            ? (
-              <div className='hidden sm:flex flex-row items-center gap-4 text-grey-dark'>
-                <div className='text-sm font-bold cursor-pointer rounded-full p-2 hover:bg-grey-super-light'>
-                    Become a host
+                  <LanguageSelector />
+                  <User />
                 </div>
-                <LanguageSelector />
-                <User />
+              )
+              : null
+            }
+          </div>
+          { isExpanded && 
+            <div className='flex flex-col h-1/2 justify-center w-full'>
+              <div className='flex justify-center'>
+                <SearchExpanded />
               </div>
-            )
-            : null
+            </div>
           }
         </div>
-        { isExpanded && 
-          <div className='flex flex-col h-1/2 justify-center w-full'>
-            <div className='flex justify-center'>
-              <SearchExpanded />
-            </div>
-          </div>
-        }
       </div>
+    )
+  }
+
+  const SmallHeader = () => {
+    return (
+      <div className='py-4 px-8 flex w-full h-20'>
+        <SearchSmall />
+      </div>
+    )
+  }
+
+  return (
+    <div className='w-full sticky top-0 inset-x-0 z-10 border-b border-grey-light  bg-white'>
+      { isSmallDevice 
+        ? <SmallHeader />
+        : <DefaultHeader />
+      }
     </div>
   )
 }
