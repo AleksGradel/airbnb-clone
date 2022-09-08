@@ -2,10 +2,12 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import DangerAlert from '../components/fragments/DangerAlert'
 import { useAuth } from '../context/AuthContext'
+import { useMediaQuery } from 'react-responsive'
 
 const Signin = () => {
   const { user, signup } = useAuth()
   const router = useRouter()
+  const isSmallDevice = useMediaQuery({ query: '(max-width: 768px)'})
 
   const [data, setData] = useState({
     email: '',
@@ -26,13 +28,13 @@ const Signin = () => {
   }
 
   return (
-    <div className='min-h-screen flex flex-col items-center justify-center w-full'>
+    <div className={`${isSmallDevice ? '' : 'items-center justify-center'} min-h-screen flex flex-col w-full`}>
       { showAlert &&
-        <div className='w-1/2'>
+        <div className={`${isSmallDevice ? 'w-full p-4' : 'w-1/2'}`}>
           <DangerAlert clickAction={() => setShowAlert(false)}/>
         </div>
       }
-      <div className=' bg-white rounded-xl border border-grey w-1/2'>
+      <div className={`${isSmallDevice ? '' : 'bg-white rounded-xl border border-grey w-1/2'}`}>
         <div className='flex justify-center border-b border-grey-light px-8 py-4'>
           <span className='font-bold'>Sign up</span>
         </div>

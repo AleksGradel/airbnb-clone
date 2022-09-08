@@ -7,7 +7,7 @@ import groq from 'groq'
 function mapView({ places }) {
     return (
         <div>
-            <div className='fixed bottom-16 sm:bottom-24 w-full flex justify-center z-10'>
+            <div className='fixed bottom-24 w-full flex justify-center z-10'>
                 <Link href='/'>
                     <div className='cursor-pointer bg-grey-dark text-white font-bold py-4 px-6 rounded-full shadow hover:scale-105 flex flex-row items-center gap-2 text-sm'>
                         <span>Show list</span>

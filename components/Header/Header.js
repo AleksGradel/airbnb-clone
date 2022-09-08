@@ -95,7 +95,9 @@ function Header() {
   return (
     <div className='w-full sticky top-0 inset-x-0 z-10 border-b border-grey-light  bg-white'>
       { isSmallDevice 
-        ? <SmallHeader />
+        ? router.pathname === '/login' || router.pathname === '/signin'
+          ? null
+          : <SmallHeader />
         : <DefaultHeader />
       }
     </div>

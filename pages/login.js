@@ -2,11 +2,14 @@ import { useState } from 'react'
 import DangerAlert from '../components/fragments/DangerAlert'
 import { useAuth } from '../context/AuthContext'
 import { useRouter } from 'next/router'
+import { useMediaQuery } from 'react-responsive'
+import Link from 'next/link'
 
 const Login = () => {
   const router = useRouter()
   const { user, login } = useAuth()
   const [showAlert, setShowAlert] = useState(false)
+  const isSmallDevice = useMediaQuery({ query: '(max-width: 768px)'})
 
   const [data, setData] = useState({
     email: '',
@@ -26,13 +29,13 @@ const Login = () => {
   }
 
   return (
-    <div className='min-h-screen flex flex-col items-center justify-center w-full'>
+    <div className={`${isSmallDevice ? '' : 'items-center justify-center'} min-h-screen flex flex-col w-full`}>
       { showAlert &&
-        <div className='w-1/2'>
+        <div className={`${isSmallDevice ? 'w-full p-4' : 'w-1/2'}`}>
           <DangerAlert clickAction={() => setShowAlert(false)}/>
         </div>
       }
-      <div className=' bg-white rounded-xl border border-grey w-1/2'>
+      <div className={`${isSmallDevice ? '' : 'bg-white rounded-xl border border-grey w-1/2'}`}>
         <div className='flex justify-center border-b border-grey-light px-8 py-4'>
           <span className='font-bold'>Log in</span>
         </div>
@@ -71,6 +74,17 @@ const Login = () => {
             </div>
           </form>
         </div>
+        { isSmallDevice
+          ? <div className='px-8 mt-4 flex flex-col w-full justify-center items-center border-t border-grey-light'>
+              <span className='mt-4'>I&#39;m here for the first time</span>
+              <Link href='/signin'>
+                <div className='flex justify-center w-full py-2 mt-4 border rounded-lg border-grey-dark font-bold cursor-pointer'>
+                  Sign up
+                </div>
+              </Link>
+            </div>
+          : null
+        }
       </div>
     </div>
   )
