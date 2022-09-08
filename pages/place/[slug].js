@@ -76,7 +76,7 @@ const Place = ({ place }) => {
                   : <div className='block basis-5/12 px-4'>
                       <ReservationBox
                         reserveAction={() => handleReservation()}
-                        reviewsCount={place.reviews.length + ' reviews'}
+                        reviewsCount={place.reviews ? place.reviews.length : '0' + ' reviews'}
                         rates={place.reviews}
                         checkinDate={checkinDate}
                         checkoutDate={checkoutDate}

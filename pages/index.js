@@ -24,7 +24,7 @@ export default function Home({ places }) {
             </div>
           </Link>
       </div>
-      <div className='p-12 xl:p-24 grid justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4'>
+      <div className='mb-10 md:mb-0 p-4 md:p-12 xl:p-24 grid justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4'>
         {places.map((place) => place.slug && (
           <Link href={`place/${place.slug.current}`} key={place?._id}>
             <a>
