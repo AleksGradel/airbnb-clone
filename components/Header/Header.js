@@ -7,6 +7,8 @@ import SearchExpanded from './fragments/SearchExpanded'
 import { useRouter } from 'next/router'
 import { useMediaQuery } from 'react-responsive'
 import SearchSmall from './fragments/SearchSmall'
+import Link from 'next/link'
+import { FaAngleLeft, FaRegHeart, FaRegShareSquare } from 'react-icons/fa' 
 
 function Header() {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -86,8 +88,24 @@ function Header() {
 
   const SmallHeader = () => {
     return (
-      <div className='py-4 px-8 flex w-full h-20'>
-        <SearchSmall />
+      <div className={`${router.pathname === '/place/[slug]' ? 'h-14 px-4' : 'h-20 px-8'} py-4 flex w-full`}>
+        {
+          router.pathname !== '/place/[slug]'
+            ? <SearchSmall />
+            : <div className='flex flex-row w-full justify-between items-center'>
+                <div>
+                  <Link href='/'>
+                      <div className='rounded-full text-lg'>
+                          <FaAngleLeft />
+                      </div>
+                  </Link>
+                </div>
+                <div className='flex flex-row gap-4 text-lg text-grey'>
+                  <span><FaRegShareSquare /></span>
+                  <span><FaRegHeart /></span>
+                </div>
+              </div>
+        }
       </div>
     )
   }
