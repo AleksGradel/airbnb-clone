@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FaSearch, FaRegHeart, FaRegUserCircle } from 'react-icons/fa'
+
 const StickyFooter = () => {
     const router = useRouter()
 
