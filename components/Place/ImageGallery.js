@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Dialog, Transition } from '@headlessui/react'
 import { useState, Fragment } from 'react'
-import { FaGripVertical, FaAngleLeft } from 'react-icons/fa'
+import { FaGripVertical, FaAngleLeft, FaRegHeart, FaRegShareSquare } from 'react-icons/fa'
 import { urlFor } from '../../sanity'
 
 const SingleImage = ({ src }) => {
@@ -40,51 +40,61 @@ const ImageGallery = ({ mainImage, images }) => {
             <span className='font-bold'>Show all photos</span>
           </button>
           <Transition appear show={showImageGallery} as={Fragment}>
-                        <Dialog as='div' className='relative z-10' onClose={() => setShowImageGallery(false)}>
-                        <Transition.Child
-                            as={Fragment}
-                            enter='ease-out duration-300'
-                            enterFrom='opacity-0'
-                            enterTo='opacity-100'
-                            leave='ease-in duration-200'
-                            leaveFrom='opacity-100'
-                            leaveTo='opacity-0'
-                        >
-                            <div className='fixed inset-0 bg-black bg-opacity-25' />
-                        </Transition.Child>
-                        <div className='fixed inset-0 overflow-y-auto'>
-                            <div className='flex min-h-full items-center justify-center text-center'>
-                            <Transition.Child
-                                as={Fragment}
-                                enter='ease-out duration-300'
-                                enterFrom='opacity-0 scale-95'
-                                enterTo='opacity-100 scale-100'
-                                leave='ease-in duration-200'
-                                leaveFrom='opacity-100 scale-100'
-                                leaveTo='opacity-0 scale-95'
-                            >
-                                <Dialog.Panel className='w-screen min-h-screen transform overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all'>
-                                    <div>
-                                      <button 
-                                          className='outline-none text-xl'
-                                          onClick={() => setShowImageGallery(false)}>
-                                          <FaAngleLeft />
-                                      </button>
-                                    </div>
-                                    <div className='mx-12 my-4'>
-                                      <SingleImage src={mainImage} />
-                                      {images ? images.slice(0, 4).map((image) => image && (
-                                        <div className='basis-1/2 p-1' key={image._key}>
-                                          <SingleImage src={image} />
-                                        </div>
-                                      )) : null}
-                                    </div>
-                                </Dialog.Panel>
-                            </Transition.Child>
+              <Dialog as='div' className='relative z-10' onClose={() => setShowImageGallery(false)}>
+              <Transition.Child
+                  as={Fragment}
+                  enter='ease-out duration-300'
+                  enterFrom='opacity-0'
+                  enterTo='opacity-100'
+                  leave='ease-in duration-200'
+                  leaveFrom='opacity-100'
+                  leaveTo='opacity-0'
+              >
+                  <div className='fixed inset-0 bg-black bg-opacity-25' />
+              </Transition.Child>
+              <div className='fixed inset-0 overflow-y-auto'>
+                  <div className='flex min-h-full items-center justify-center text-center'>
+                  <Transition.Child
+                      as={Fragment}
+                      enter='ease-out duration-300'
+                      enterFrom='opacity-0 scale-95'
+                      enterTo='opacity-100 scale-100'
+                      leave='ease-in duration-200'
+                      leaveFrom='opacity-100 scale-100'
+                      leaveTo='opacity-0 scale-95'
+                  >
+                      <Dialog.Panel className='w-screen min-h-screen transform overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all'>
+                          <div className='flex flex-row justify-between'>
+                            <button 
+                                className='outline-none text-xl hover:bg-grey-super-light rounded-full px-2'
+                                onClick={() => setShowImageGallery(false)}>
+                                <FaAngleLeft />
+                            </button>
+                            <div className='flex flex-row gap-4 text-sm text-grey-dark'>
+                              <div className='flex flex-row items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-grey-super-light'>
+                                <FaRegShareSquare />
+                                <span className='underline underline-offset-1'>Share</span>
+                              </div>
+                              <div className='flex flex-row items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-grey-super-light'>
+                                <FaRegHeart />
+                                <span className='underline underline-offset-1'>Save</span>
+                              </div>
                             </div>
-                        </div>
-                        </Dialog>
-                    </Transition>
+                          </div>
+                          <div className='mx-4 sm:mx-12 md:mx-24 my-4'>
+                            <SingleImage src={mainImage} />
+                            {images ? images.map((image) => image && (
+                              <div className='basis-1/2 p-1' key={image._key}>
+                                <SingleImage src={image} />
+                              </div>
+                            )) : null}
+                          </div>
+                      </Dialog.Panel>
+                  </Transition.Child>
+                  </div>
+              </div>
+              </Dialog>
+          </Transition>
         </div>
         
       }

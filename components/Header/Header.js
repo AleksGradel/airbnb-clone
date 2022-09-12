@@ -95,14 +95,14 @@ function Header() {
             : <div className='flex flex-row w-full justify-between items-center'>
                 <div>
                   <Link href='/'>
-                      <div className='rounded-full text-lg'>
+                      <div className='cursor-pointer hover:bg-grey-super-light rounded-full p-2 text-lg'>
                           <FaAngleLeft />
                       </div>
                   </Link>
                 </div>
-                <div className='flex flex-row gap-4 text-lg text-grey'>
-                  <span><FaRegShareSquare /></span>
-                  <span><FaRegHeart /></span>
+                <div className='flex flex-row gap-2 text-lg text-grey'>
+                  <span className='cursor-pointer hover:bg-grey-super-light rounded-full p-2'><FaRegShareSquare /></span>
+                  <span className='cursor-pointer hover:bg-grey-super-light rounded-full p-2'><FaRegHeart /></span>
                 </div>
               </div>
         }

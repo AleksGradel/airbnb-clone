@@ -8,7 +8,6 @@ import Rating from '../../components/fragments/Rating'
 import Separator from '../../components/fragments/Separator'
 
 const Reservation = ({ place }) => {
-    console.log(place.mainImage)
     return (
         <div className='px-8 py-10 min-h-screen'>
             <div className='text-3xl flex flex-row items-center gap-4 mb-6'>
