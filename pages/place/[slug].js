@@ -1,7 +1,5 @@
 import { sanityClient } from '../../sanity'
 import groq from 'groq'
-import { useState } from 'react'
-import { format, addDays, differenceInDays } from 'date-fns'
 import ImageGallery from '../../components/Place/ImageGallery'
 import Separator from '../../components/fragments/Separator'
 import Avatar from '../../components/fragments/Avatar'
@@ -14,22 +12,15 @@ import { useAuth } from '../../context/AuthContext'
 import { useRouter } from 'next/router'
 import { useMediaQuery } from 'react-responsive'
 import ReservationBoxSmall from '../../components/Place/ReservationBoxSmall'
+import { useDates } from '../../context/DatesContext'
+import format from 'date-fns/format'
 
 const Place = ({ place }) => {
     const { user } = useAuth() 
+    const { dateRange, setDateRange, checkinDate, checkoutDate, numberOfNights } = useDates()
     const router = useRouter()
-    const isSmallDevice = useMediaQuery({ query: '(max-width: 768px)'})
-    const [dateRange, setDateRange] = useState([
-        {
-            startDate: new Date(),
-            endDate: addDays(new Date(), 7),
-            key: 'selection'
-        }
-    ])
 
-    const checkinDate = format(dateRange[0].startDate, "MM/dd/yyyy")
-    const checkoutDate = format(dateRange[0].endDate, "MM/dd/yyyy")
-    const numberOfNights = differenceInDays(new Date(checkoutDate), new Date(checkinDate))
+    const isSmallDevice = useMediaQuery({ query: '(max-width: 768px)'})
 
     const handleReservation = () => {
       user 

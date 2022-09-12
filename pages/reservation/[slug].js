@@ -6,8 +6,11 @@ import Image from 'next/image'
 import { urlFor } from '../../sanity'
 import Rating from '../../components/fragments/Rating'
 import Separator from '../../components/fragments/Separator'
+import { useDates } from '../../context/DatesContext'
 
 const Reservation = ({ place }) => {
+    const { dateRange, setDateRange, checkinDate, checkoutDate, numberOfNights } = useDates()
+
     return (
         <div className='px-8 py-10 min-h-screen'>
             <div className='text-3xl flex flex-row items-center gap-4 mb-6'>
@@ -25,7 +28,7 @@ const Reservation = ({ place }) => {
                         <div className='flex flex-row justify-between'>
                             <div className='flex flex-col gap-2'>
                                 <span className='font-bold'>Dates</span>
-                                <span>dates</span>
+                                <span>{checkinDate} - {checkoutDate}</span>
                             </div>
                             <div className='self-center'>
                                 <span className='cursor-pointer font-bold underline underline-offset-2'>
@@ -79,12 +82,21 @@ const Reservation = ({ place }) => {
                             <span>Your booking is protected</span>
                         </div>
                         <Separator />
-                        <div className='py-6'>
-                            <h1 className='font-bold'>Price details</h1>
+                        <div className='pb-2 pt-4'>
+                            <h1 className='font-bold text-lg'>Price details</h1>
+                        </div>
+                        <div className='py-2 flex flex-row justify-between'>
+                            <span className='underline underline-offset-2 decoration-1'>{place.pricePerNight}$ x {numberOfNights} nights</span>
+                            <span>{numberOfNights * place.pricePerNight}$</span>                
+                        </div>
+                        <div className='pt-2 pb-4 flex flex-row justify-between'>
+                            <span className='underline underline-offset-2 decoration-1'>Service fee</span>
+                            <span>0$</span>                
                         </div>
                         <Separator />
-                        <div className='py-6 font-bold'>
+                        <div className='flex justify-between pt-6 font-bold'>
                             <span>Total(USD)</span>
+                            <span>{numberOfNights * place.pricePerNight}$</span>
                         </div>
                     </div>
                 </div>
