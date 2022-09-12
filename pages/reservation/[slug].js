@@ -7,9 +7,14 @@ import { urlFor } from '../../sanity'
 import Rating from '../../components/fragments/Rating'
 import Separator from '../../components/fragments/Separator'
 import { useDates } from '../../context/DatesContext'
+import DialogSmall from '../../components/Footer/fragments/DialogSmall'
+import { useState } from 'react'
+import Calendar from '../../components/Place/Calendar'
 
 const Reservation = ({ place }) => {
     const { dateRange, setDateRange, checkinDate, checkoutDate, numberOfNights } = useDates()
+    const [showDatesEditor, setShowDatesEditor] = useState(false)
+    const [showGuestsEditor, setShowGuestsEditor] = useState(false)
 
     return (
         <div className='px-8 py-10 min-h-screen'>
@@ -31,9 +36,46 @@ const Reservation = ({ place }) => {
                                 <span>{checkinDate} - {checkoutDate}</span>
                             </div>
                             <div className='self-center'>
-                                <span className='cursor-pointer font-bold underline underline-offset-2'>
+                                <span 
+                                    onClick={() => setShowDatesEditor(true)}
+                                    className='cursor-pointer font-bold underline underline-offset-2'>
                                     Edit
                                 </span>
+                                <DialogSmall 
+                                    isOpen={showDatesEditor}
+                                    closeDialog={() => setShowDatesEditor(false)}
+                                >
+                                    <div>
+                                        <div className='mb-2 px-2 h-12'>
+                                            { numberOfNights 
+                                                ? <div className='flex flex-col'>
+                                                    <span className='text-lg font-bold'>
+                                                        {numberOfNights} {numberOfNights === 1 ? 'night' : 'nights'}
+                                                    </span>
+                                                    <div className='text-sm text-grey'>
+                                                        <span>{place.bedNumber} bed</span>
+                                                        <span className='px-1'>&#183;</span>
+                                                        <span>{place.bathroomNumber} bath</span>
+                                                    </div>
+                                                </div>
+                                                : <div className='flex flex-col'>
+                                                    <span className='text-lg font-bold'>Select dates</span>
+                                                    <span className='text-sm text-grey'>Add your travel dates for exact pricing</span> 
+                                                </div>
+                                            }
+                                        </div>
+                                        <Calendar 
+                                            range={dateRange} 
+                                            setDateRange={item => setDateRange([item.selection])} />
+                                        <div className='w-full flex justify-end'>
+                                            <button 
+                                                onClick={() => setShowDatesEditor(false)} 
+                                                className='bg-grey-dark hover:bg-black text-white font-bold px-4 rounded-lg py-1'>
+                                                Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </ DialogSmall>
                             </div>
                         </div>
                         <div className='mt-4 flex flex-row justify-between'>
@@ -42,9 +84,17 @@ const Reservation = ({ place }) => {
                                 <span>guests</span>
                             </div>
                             <div className='self-center'>
-                                <span className='cursor-pointer font-bold underline underline-offset-2'>
+                                <span 
+                                    onClick={() => setShowGuestsEditor(true)}
+                                    className='cursor-pointer font-bold underline underline-offset-2'>
                                     Edit
                                 </span>
+                                <DialogSmall 
+                                    isOpen={showGuestsEditor}
+                                    closeDialog={() => setShowGuestsEditor(false)}
+                                >
+                                    <p>goscie </p>
+                                </ DialogSmall>
                             </div>
                         </div>
                     </div>
