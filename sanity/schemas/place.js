@@ -7,30 +7,36 @@ export default {
             name: 'title',
             title: 'Title',
             type: 'string',
+            validation: Rule => Rule.required(),
         },
         {
             name: 'city',
             title: 'City',
             type: 'string',
+            validation: Rule => Rule.required(),
         },
         {
             name: 'state',
             title: 'State',
             type: 'string',
+            validation: Rule => Rule.required(),
         },
         {
             name: 'country',
             title: 'Country',
             type: 'string',
+            validation: Rule => Rule.required(),
         },
         {
             name: 'description',
             title: 'Description',
             type: 'text',
+            validation: Rule => Rule.required(),
         },
         {
             name: 'host',
             type: 'object',
+            validation: Rule => Rule.required(),
             fields: [
               {
                 title: 'Host',
@@ -58,6 +64,7 @@ export default {
             name: 'pricePerNight',
             title: 'Price per night',
             type: 'number',
+            validation: Rule => Rule.required()
         },
         {
             name: 'slug',
@@ -80,6 +87,7 @@ export default {
             options: {
               hotspot: true,
             },
+            validation: Rule => Rule.required(),
         },
         {
             name: 'images',
@@ -94,7 +102,8 @@ export default {
         {
             title: 'Number of guests',
             name: 'guestNumber',
-            type: 'number'
+            type: 'number',
+            validation: Rule => Rule.required()
         },
         {
             title: 'Number of bedrooms',

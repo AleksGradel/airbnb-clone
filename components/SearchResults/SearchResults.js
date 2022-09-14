@@ -1,13 +1,14 @@
 import Link from 'next/link'
-import { useSelector } from 'react-redux'
 import Tile from '../Tile/Tile'
 import { urlFor } from '../../sanity'
 import { FaSearchLocation } from 'react-icons/fa'
+import { useReservationDetails } from '../../context/ReservationDetailsContext'
 
 const SearchResults = ({ places }) => {
-    const totalGuestNumber = useSelector((state) => state.guests.total)
+    const { adultsCount, childrenCount } = useReservationDetails()
+    const totalGuestCount = adultsCount + childrenCount
 
-    const results = places.filter(place => place.guestNumber >= totalGuestNumber && place.guestNumber !== null)
+    const results = places.filter(place => place.guestNumber >= totalGuestCount && place.guestNumber !== null)
 
     return (
             <div>
