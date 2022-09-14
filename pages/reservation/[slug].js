@@ -6,15 +6,19 @@ import Image from 'next/image'
 import { urlFor } from '../../sanity'
 import Rating from '../../components/fragments/Rating'
 import Separator from '../../components/fragments/Separator'
-import { useDates } from '../../context/DatesContext'
+import { useReservationDetails } from '../../context/ReservationDetailsContext'
 import DialogSmall from '../../components/Footer/fragments/DialogSmall'
 import { useState } from 'react'
 import Calendar from '../../components/Place/Calendar'
 
+
 const Reservation = ({ place }) => {
-    const { dateRange, setDateRange, checkinDate, checkoutDate, numberOfNights } = useDates()
+    const { dateRange, setDateRange, checkinDate, checkoutDate, numberOfNights } = useReservationDetails()
+    const { adultsCount, childrenCount, infantsCount } = useReservationDetails()
     const [showDatesEditor, setShowDatesEditor] = useState(false)
     const [showGuestsEditor, setShowGuestsEditor] = useState(false)
+
+    const totalGuestCount = adultsCount + childrenCount
 
     return (
         <div className='px-8 py-10 min-h-screen'>
@@ -81,7 +85,10 @@ const Reservation = ({ place }) => {
                         <div className='mt-4 flex flex-row justify-between'>
                             <div className='flex flex-col gap-2'>
                                 <span className='font-bold'>Guests</span>
-                                <span>guests</span>
+                                <span>
+                                    {totalGuestCount} {totalGuestCount > 1 ? 'guests' : 'guest' }
+                                    {infantsCount ? ', ' + infantsCount + ' infants' : null }
+                                </span>
                             </div>
                             <div className='self-center'>
                                 <span 

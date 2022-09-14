@@ -3,11 +3,13 @@ import { FaChevronDown } from 'react-icons/fa'
 import Separator from '../fragments/Separator'
 import GuestsSelector from '../fragments/GuestsSelector'
 import { Fragment } from 'react'
-import { useSelector } from 'react-redux'
 import Rating from '../fragments/Rating'
+import { useReservationDetails } from '../../context/ReservationDetailsContext'
 
-function ReservationBox({ pricePerNight, checkinDate, reserveAction, checkoutDate, reviewsCount, handleReviewsClick, numberOfNights, totalPrice, rates, maxGuestNumber }) {
-    const totalGuestNumber = useSelector((state) => state.guests.total)
+function ReservationBox({ pricePerNight, checkinDate, reserveAction, maxGuestNumber, checkoutDate, reviewsCount, handleReviewsClick, numberOfNights, totalPrice, rates }) {
+    const { adultsCount, childrenCount, infantsCount } = useReservationDetails()
+
+    const totalGuestCount = adultsCount + childrenCount
 
     return (
     <div className='border border-grey-light rounded-lg shadow-md m-4 p-6'>
@@ -41,8 +43,11 @@ function ReservationBox({ pricePerNight, checkinDate, reserveAction, checkoutDat
                 <Menu.Button className='inline-flex flex-row justify-between items-center w-full p-2 border-t border-grey text-sm'>
                     <div className='flex flex-col'>
                         <span className='flex justify-start'>Guests</span>
-                        { totalGuestNumber > 0 
-                            ? <span className='text-xs'>{totalGuestNumber} {totalGuestNumber > 1 ? 'guests' : 'guest' }</span>
+                        { totalGuestCount > 0 
+                            ? <span className='text-xs'>
+                                {totalGuestCount} {totalGuestCount > 1 ? 'guests' : 'guest' }
+                                {infantsCount ? ', ' + infantsCount + ' infants' : null }
+                            </span>
                             : <span className='text-xs'>Add guests</span>
                         }
                     </div>
@@ -61,7 +66,7 @@ function ReservationBox({ pricePerNight, checkinDate, reserveAction, checkoutDat
                     <Menu.Items 
                         className='absolute right-0 w-full origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
                         <div className='p-4 border border-grey-light rounded-md'>
-                            <GuestsSelector />
+                            <GuestsSelector maxGuestNumber={maxGuestNumber} />
                             <span className='text-xs'>This place has a maximum of {maxGuestNumber} guests, not including infants.</span>
                         </div>
                     </Menu.Items>

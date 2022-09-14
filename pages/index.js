@@ -4,14 +4,13 @@ import Tile from '../components/Tile/Tile'
 import { sanityClient, urlFor } from '../sanity'
 import { FaMap } from 'react-icons/fa'
 import { useEffect } from 'react'
-import { reset } from '../slices/guestsSlice'
-import { useDispatch } from 'react-redux'
+import { useReservationDetails } from '../context/ReservationDetailsContext'
 
 export default function Home({ places }) {
-  const dispatch = useDispatch()
+  const { resetGuestsTotalCount } = useReservationDetails()
 
   useEffect(() => {
-    dispatch(reset())
+    resetGuestsTotalCount()
   }, [])
 
   return (

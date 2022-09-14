@@ -3,18 +3,18 @@ import '../styles/globals.css'
 import { store } from '../store'
 import { Provider } from 'react-redux'
 import { AuthContextProvider } from '../context/AuthContext'
-import { DatesContextProvider } from '../context/DatesContext'
+import { ReservationDetailsContextProvider } from '../context/ReservationDetailsContext'
 
 function MyApp({ Component, pageProps }) {
   return (
     <AuthContextProvider>
-      <DatesContextProvider>
+      <ReservationDetailsContextProvider>
         <Provider store={store}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
         </Provider>
-      </DatesContextProvider>
+      </ReservationDetailsContextProvider>
     </AuthContextProvider>
   )
 }

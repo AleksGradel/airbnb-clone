@@ -12,7 +12,7 @@ import { useAuth } from '../../context/AuthContext'
 import { useRouter } from 'next/router'
 import { useMediaQuery } from 'react-responsive'
 import ReservationBoxSmall from '../../components/Place/ReservationBoxSmall'
-import { useDates } from '../../context/DatesContext'
+import { useReservationDetails } from '../../context/ReservationDetailsContext'
 import format from 'date-fns/format'
 import Rating from '../../components/fragments/Rating'
 import { FaRegHeart, FaRegShareSquare } from 'react-icons/fa'
@@ -20,7 +20,7 @@ import { useRef } from 'react'
 
 const Place = ({ place }) => {
     const { user } = useAuth() 
-    const { dateRange, setDateRange, checkinDate, checkoutDate, numberOfNights } = useDates()
+    const { dateRange, setDateRange, checkinDate, checkoutDate, numberOfNights } = useReservationDetails()
     const router = useRouter()
 
     const mapRef = useRef(null)
@@ -121,7 +121,8 @@ const Place = ({ place }) => {
                         checkinDate={checkinDate}
                         checkoutDate={checkoutDate}
                         pricePerNight={place.pricePerNight} 
-                        numberOfNights={numberOfNights} 
+                        numberOfNights={numberOfNights}
+                        maxGuestNumber={place.guestNumber}
                         totalPrice={place.pricePerNight * numberOfNights} />
                     </div>
                 }
