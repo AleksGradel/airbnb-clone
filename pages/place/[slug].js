@@ -25,6 +25,7 @@ const Place = ({ place }) => {
 
     const mapRef = useRef(null)
     const reviewsRef = useRef(null)
+    const calendarRef = useRef(null)
 
     const isSmallDevice = useMediaQuery({ query: '(max-width: 768px)'})
 
@@ -34,6 +35,10 @@ const Place = ({ place }) => {
 
     const handleReviewsScroll = () => {
       reviewsRef.current?.scrollIntoView({ behaviour: 'smmooth' })
+    }
+
+    const handleCalendarScroll = () => {
+      calendarRef.current?.scrollIntoView({ behaviour: 'smooth'})
     }
 
     const handleReservation = () => {
@@ -102,7 +107,7 @@ const Place = ({ place }) => {
                   <Separator />
                   <Description description={place.description} />
                   <Separator />
-                  <div className='my-8'>
+                  <div className='my-8' ref={calendarRef}>
                     <h2 className='text-xl font-bold mb-4'>{numberOfNights} nights in {place.city}</h2>
                     <p className='text-grey mb-4'>{format(dateRange[0].startDate, "MM/dd/yyyy")} to {format(dateRange[0].endDate, "MM/dd/yyyy")}</p>
                     <Calendar 
@@ -116,6 +121,7 @@ const Place = ({ place }) => {
                       <ReservationBox
                         reserveAction={() => handleReservation()}
                         handleReviewsClick={() => handleReviewsScroll()}
+                        showCalendar={() => handleCalendarScroll()}
                         reviewsCount={place.reviews ? place.reviews.length + ' reviews' : '0 reviews'}
                         rates={place.reviews}
                         checkinDate={checkinDate}

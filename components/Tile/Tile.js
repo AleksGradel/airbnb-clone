@@ -4,7 +4,7 @@ import Rating from '../fragments/Rating'
 
 const Tile = ({ img, title, price, rates }) => {
   return (
-    <div className='cursor-pointer mb-2 md:mb-8 p-1'>
+    <div className='cursor-pointer mb-2 md:mb-8 p-1 text-sm'>
       <div className='mb-4 rounded-xl overflow-hidden'>
         <Image 
             alt='Your next dream destination'
