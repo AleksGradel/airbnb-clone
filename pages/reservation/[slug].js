@@ -7,9 +7,10 @@ import { urlFor } from '../../sanity'
 import Rating from '../../components/fragments/Rating'
 import Separator from '../../components/fragments/Separator'
 import { useReservationDetails } from '../../context/ReservationDetailsContext'
-import DialogSmall from '../../components/Footer/fragments/DialogSmall'
+import DialogSmall from '../../components/fragments/DialogSmall'
 import { useState } from 'react'
 import Calendar from '../../components/Place/Calendar'
+import { useMediaQuery } from 'react-responsive'
 
 
 const Reservation = ({ place }) => {
@@ -17,12 +18,13 @@ const Reservation = ({ place }) => {
     const { adultsCount, childrenCount, infantsCount } = useReservationDetails()
     const [showDatesEditor, setShowDatesEditor] = useState(false)
     const [showGuestsEditor, setShowGuestsEditor] = useState(false)
+    const isSmallDevice = useMediaQuery({ query: '(max-width: 768px)'})
 
     const totalGuestCount = adultsCount + childrenCount
 
     return (
-        <div className='px-8 py-10 min-h-screen'>
-            <div className='text-3xl flex flex-row items-center gap-4 mb-6'>
+        <div className='px-2 sm:px-8 py-10 min-h-screen'>
+            <div className='text-md sm:text-3xl flex flex-row items-center gap-4 mb-6'>
                 <Link href='/'>
                     <div className='cursor-pointer hover:bg-grey-super-light rounded-full p-2'>
                         <FaAngleLeft />
@@ -30,8 +32,26 @@ const Reservation = ({ place }) => {
                 </Link>
                 <p className='font-bold'>Confirm and pay</p>
             </div>
-            <div className='flex flex-row items-center gap-4'>
-                <div className='w-1/2 self-start'>
+            <div className='flex flex-col-reverse sm:flex-row items-center gap-4'>
+            { isSmallDevice && <div className='w-full mb-10'>
+                    <div className='pb-2 pt-4 px-4'>
+                        <h1 className='font-bold text-lg'>Price details</h1>
+                    </div>
+                    <div className='py-2 px-4 flex flex-row justify-between'>
+                        <span className='underline underline-offset-2 decoration-1'>{place.pricePerNight}$ x {numberOfNights} nights</span>
+                        <span>{numberOfNights * place.pricePerNight}$</span>                
+                    </div>
+                    <div className='px-4 pt-2 pb-4 flex flex-row justify-between'>
+                        <span className='underline underline-offset-2 decoration-1'>Service fee</span>
+                        <span>0$</span>                
+                    </div>
+                    <Separator />
+                    <div className='px-4 flex justify-between pt-6 font-bold'>
+                        <span>Total(USD)</span>
+                        <span>{numberOfNights * place.pricePerNight}$</span>
+                    </div>
+                </div>}
+                <div className='px-4 sm:px-0 w-full sm:w-1/2 self-start'>
                     <div className='mb-6'>
                         <h1 className='text-2xl font-bold mb-6'>Your trip</h1>
                         <div className='flex flex-row justify-between'>
@@ -107,8 +127,8 @@ const Reservation = ({ place }) => {
                     </div>
                     <Separator />
                 </div>
-                <div className='w-1/2'>
-                    <div className='border border-grey-light rounded-lg p-6 m-4'>
+                <div className='w-full sm:w-1/2'>
+                    <div className='sm:border sm:border-grey-light rounded-lg sm:p-6 sm:m-4'>
                         <div className='flex flex-row mb-4'>
                             <div className='w-1/2 p-2 items-stretch'>
                                 <div className='rounded-xl overflow-hidden'>
@@ -139,22 +159,24 @@ const Reservation = ({ place }) => {
                             <span>Your booking is protected</span>
                         </div>
                         <Separator />
-                        <div className='pb-2 pt-4'>
-                            <h1 className='font-bold text-lg'>Price details</h1>
-                        </div>
-                        <div className='py-2 flex flex-row justify-between'>
-                            <span className='underline underline-offset-2 decoration-1'>{place.pricePerNight}$ x {numberOfNights} nights</span>
-                            <span>{numberOfNights * place.pricePerNight}$</span>                
-                        </div>
-                        <div className='pt-2 pb-4 flex flex-row justify-between'>
-                            <span className='underline underline-offset-2 decoration-1'>Service fee</span>
-                            <span>0$</span>                
-                        </div>
-                        <Separator />
-                        <div className='flex justify-between pt-6 font-bold'>
-                            <span>Total(USD)</span>
-                            <span>{numberOfNights * place.pricePerNight}$</span>
-                        </div>
+                        { !isSmallDevice && <div>
+                            <div className='pb-2 pt-4'>
+                                <h1 className='font-bold text-lg'>Price details</h1>
+                            </div>
+                            <div className='py-2 flex flex-row justify-between'>
+                                <span className='underline underline-offset-2 decoration-1'>{place.pricePerNight}$ x {numberOfNights} nights</span>
+                                <span>{numberOfNights * place.pricePerNight}$</span>                
+                            </div>
+                            <div className='pt-2 pb-4 flex flex-row justify-between'>
+                                <span className='underline underline-offset-2 decoration-1'>Service fee</span>
+                                <span>0$</span>                
+                            </div>
+                            <Separator />
+                            <div className='flex justify-between pt-6 font-bold'>
+                                <span>Total(USD)</span>
+                                <span>{numberOfNights * place.pricePerNight}$</span>
+                            </div>
+                        </div>}
                     </div>
                 </div>
             </div>

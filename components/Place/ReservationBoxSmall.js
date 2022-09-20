@@ -9,12 +9,6 @@ const ReservationBoxSmall = ({ checkinDate, checkoutDate, pricePerNight, reserve
     const [showReservationBox, setShowReservationBox] = useState(false)
     const totalGuestNumber = useSelector((state) => state.guests.total)
 
-    function reserveButtonAction() {
-        showReservationBox 
-        ? reserveAction()
-        : setShowReservationBox(true)
-    }
-
     return (
         <div className='absolute'>
             <div className='w-full z-50 fixed bottom-0 h-20 bg-white border-t border-grey-light 
@@ -35,11 +29,16 @@ const ReservationBoxSmall = ({ checkinDate, checkoutDate, pricePerNight, reserve
                         </div>
                 }
                 <div className={`${showReservationBox ? 'w-full' : ''}`}>
-                    <button
-                        onClick={() => reserveButtonAction()}
-                        className={`${showReservationBox ? 'w-full' : ''} bg-pink rounded-lg py-3 px-6 text-white font-bold text-sm`}>
-                        Reserve
-                    </button>
+                    { !showReservationBox 
+                        ? <button className='bg-pink rounded-lg py-3 px-6 text-white font-bold text-sm' 
+                            onClick={() => setShowReservationBox(true)}>
+                            Reserve
+                        </button>
+                        : <button className='w-full bg-pink rounded-lg py-3 px-6 text-white font-bold text-sm' 
+                            onClick={reserveAction}>
+                            Reserve
+                        </button>
+                    }
                     <Transition appear show={showReservationBox} as={Fragment}>
                         <Dialog as='div' className='relative z-10' onClose={() => setShowReservationBox(false)}>
                         <Transition.Child
@@ -64,7 +63,7 @@ const ReservationBoxSmall = ({ checkinDate, checkoutDate, pricePerNight, reserve
                                 leaveFrom='opacity-100 scale-100'
                                 leaveTo='opacity-0 scale-95'
                             >
-                                <Dialog.Panel className='w-full max-w-md min-h-screen transform overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all'>
+                                <Dialog.Panel className='w-full max-w-full min-h-screen transform overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all'>
                                     <button 
                                         className='outline-none text-xl'
                                         onClick={() => setShowReservationBox(false)}>
