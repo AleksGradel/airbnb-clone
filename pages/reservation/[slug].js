@@ -12,13 +12,18 @@ import { useState } from 'react'
 import Calendar from '../../components/Place/Calendar'
 import { useMediaQuery } from 'react-responsive'
 
-
 const Reservation = ({ place }) => {
-    const { dateRange, setDateRange, checkinDate, checkoutDate, numberOfNights } = useReservationDetails()
+    const {
+        dateRange,
+        setDateRange,
+        checkinDate,
+        checkoutDate,
+        numberOfNights,
+    } = useReservationDetails()
     const { adultsCount, childrenCount, infantsCount } = useReservationDetails()
     const [showDatesEditor, setShowDatesEditor] = useState(false)
     const [showGuestsEditor, setShowGuestsEditor] = useState(false)
-    const isSmallDevice = useMediaQuery({ query: '(max-width: 768px)'})
+    const isSmallDevice = useMediaQuery({ query: '(max-width: 768px)' })
 
     const totalGuestCount = adultsCount + childrenCount
 
@@ -33,95 +38,137 @@ const Reservation = ({ place }) => {
                 <p className='font-bold'>Confirm and pay</p>
             </div>
             <div className='flex flex-col-reverse sm:flex-row items-center gap-4'>
-            { isSmallDevice && <div className='w-full mb-10'>
-                    <div className='pb-2 pt-4 px-4'>
-                        <h1 className='font-bold text-lg'>Price details</h1>
+                {isSmallDevice && (
+                    <div className='w-full mb-10'>
+                        <div className='pb-2 pt-4 px-4'>
+                            <h1 className='font-bold text-lg'>Price details</h1>
+                        </div>
+                        <div className='py-2 px-4 flex flex-row justify-between'>
+                            <span className='underline underline-offset-2 decoration-1'>
+                                {place.pricePerNight}$ x {numberOfNights} nights
+                            </span>
+                            <span>{numberOfNights * place.pricePerNight}$</span>
+                        </div>
+                        <div className='px-4 pt-2 pb-4 flex flex-row justify-between'>
+                            <span className='underline underline-offset-2 decoration-1'>
+                                Service fee
+                            </span>
+                            <span>0$</span>
+                        </div>
+                        <Separator />
+                        <div className='px-4 flex justify-between pt-6 font-bold'>
+                            <span>Total(USD)</span>
+                            <span>{numberOfNights * place.pricePerNight}$</span>
+                        </div>
                     </div>
-                    <div className='py-2 px-4 flex flex-row justify-between'>
-                        <span className='underline underline-offset-2 decoration-1'>{place.pricePerNight}$ x {numberOfNights} nights</span>
-                        <span>{numberOfNights * place.pricePerNight}$</span>                
-                    </div>
-                    <div className='px-4 pt-2 pb-4 flex flex-row justify-between'>
-                        <span className='underline underline-offset-2 decoration-1'>Service fee</span>
-                        <span>0$</span>                
-                    </div>
-                    <Separator />
-                    <div className='px-4 flex justify-between pt-6 font-bold'>
-                        <span>Total(USD)</span>
-                        <span>{numberOfNights * place.pricePerNight}$</span>
-                    </div>
-                </div>}
+                )}
                 <div className='px-4 sm:px-0 w-full sm:w-1/2 self-start'>
                     <div className='mb-6'>
                         <h1 className='text-2xl font-bold mb-6'>Your trip</h1>
                         <div className='flex flex-row justify-between'>
                             <div className='flex flex-col gap-2'>
                                 <span className='font-bold'>Dates</span>
-                                <span>{checkinDate} - {checkoutDate}</span>
+                                <span>
+                                    {checkinDate} - {checkoutDate}
+                                </span>
                             </div>
                             <div className='self-center'>
-                                <span 
+                                <span
                                     onClick={() => setShowDatesEditor(true)}
-                                    className='cursor-pointer font-bold underline underline-offset-2'>
+                                    className='cursor-pointer font-bold underline underline-offset-2'
+                                >
                                     Edit
                                 </span>
-                                <DialogSmall 
+                                <DialogSmall
                                     isOpen={showDatesEditor}
-                                    closeDialog={() => setShowDatesEditor(false)}
+                                    closeDialog={() =>
+                                        setShowDatesEditor(false)
+                                    }
                                 >
                                     <div>
                                         <div className='mb-2 px-2 h-12'>
-                                            { numberOfNights 
-                                                ? <div className='flex flex-col'>
+                                            {numberOfNights ? (
+                                                <div className='flex flex-col'>
                                                     <span className='text-lg font-bold'>
-                                                        {numberOfNights} {numberOfNights === 1 ? 'night' : 'nights'}
+                                                        {numberOfNights}{' '}
+                                                        {numberOfNights === 1
+                                                            ? 'night'
+                                                            : 'nights'}
                                                     </span>
                                                     <div className='text-sm text-grey'>
-                                                        <span>{place.bedNumber} bed</span>
-                                                        <span className='px-1'>&#183;</span>
-                                                        <span>{place.bathroomNumber} bath</span>
+                                                        <span>
+                                                            {place.bedNumber}{' '}
+                                                            bed
+                                                        </span>
+                                                        <span className='px-1'>
+                                                            &#183;
+                                                        </span>
+                                                        <span>
+                                                            {
+                                                                place.bathroomNumber
+                                                            }{' '}
+                                                            bath
+                                                        </span>
                                                     </div>
                                                 </div>
-                                                : <div className='flex flex-col'>
-                                                    <span className='text-lg font-bold'>Select dates</span>
-                                                    <span className='text-sm text-grey'>Add your travel dates for exact pricing</span> 
+                                            ) : (
+                                                <div className='flex flex-col'>
+                                                    <span className='text-lg font-bold'>
+                                                        Select dates
+                                                    </span>
+                                                    <span className='text-sm text-grey'>
+                                                        Add your travel dates
+                                                        for exact pricing
+                                                    </span>
                                                 </div>
-                                            }
+                                            )}
                                         </div>
-                                        <Calendar 
-                                            range={dateRange} 
-                                            setDateRange={item => setDateRange([item.selection])} />
+                                        <Calendar
+                                            range={dateRange}
+                                            setDateRange={(item) =>
+                                                setDateRange([item.selection])
+                                            }
+                                        />
                                         <div className='w-full flex justify-end'>
-                                            <button 
-                                                onClick={() => setShowDatesEditor(false)} 
-                                                className='bg-grey-dark hover:bg-black text-white font-bold px-4 rounded-lg py-1'>
+                                            <button
+                                                onClick={() =>
+                                                    setShowDatesEditor(false)
+                                                }
+                                                className='bg-grey-dark hover:bg-black text-white font-bold px-4 rounded-lg py-1'
+                                            >
                                                 Save
                                             </button>
                                         </div>
                                     </div>
-                                </ DialogSmall>
+                                </DialogSmall>
                             </div>
                         </div>
                         <div className='mt-4 flex flex-row justify-between'>
                             <div className='flex flex-col gap-2'>
                                 <span className='font-bold'>Guests</span>
                                 <span>
-                                    {totalGuestCount} {totalGuestCount > 1 ? 'guests' : 'guest' }
-                                    {infantsCount ? ', ' + infantsCount + ' infants' : null }
+                                    {totalGuestCount}{' '}
+                                    {totalGuestCount > 1 ? 'guests' : 'guest'}
+                                    {infantsCount
+                                        ? ', ' + infantsCount + ' infants'
+                                        : null}
                                 </span>
                             </div>
                             <div className='self-center'>
-                                <span 
+                                <span
                                     onClick={() => setShowGuestsEditor(true)}
-                                    className='cursor-pointer font-bold underline underline-offset-2'>
+                                    className='cursor-pointer font-bold underline underline-offset-2'
+                                >
                                     Edit
                                 </span>
-                                <DialogSmall 
+                                <DialogSmall
                                     isOpen={showGuestsEditor}
-                                    closeDialog={() => setShowGuestsEditor(false)}
+                                    closeDialog={() =>
+                                        setShowGuestsEditor(false)
+                                    }
                                 >
                                     <p>goscie </p>
-                                </ DialogSmall>
+                                </DialogSmall>
                             </div>
                         </div>
                     </div>
@@ -132,25 +179,32 @@ const Reservation = ({ place }) => {
                         <div className='flex flex-row mb-4'>
                             <div className='w-1/2 p-2 items-stretch'>
                                 <div className='rounded-xl overflow-hidden'>
-                                    <Image 
+                                    <Image
                                         alt='Your next dream destination'
-                                        src={urlFor(place.mainImage).url()} 
+                                        src={urlFor(place.mainImage).url()}
                                         layout='responsive'
                                         objectFit='cover'
                                         width={100}
-                                        height={100} />
+                                        height={100}
+                                    />
                                 </div>
                             </div>
                             <div className='flex p-2'>
                                 <div className='flex flex-col'>
-                                    <span className='text-xs text-grey'>{place.type}</span>
-                                    <span className='text-sm'>{place.title}</span>
+                                    <span className='text-xs text-grey'>
+                                        {place.type}
+                                    </span>
+                                    <span className='text-sm'>
+                                        {place.title}
+                                    </span>
                                 </div>
                                 <div className='text-sm self-end flex flex-row gap-1'>
                                     <Rating rates={place.reviews} />
-                                    { place.reviews &&
-                                        <span className='text-grey'>({place.reviews.length})</span>
-                                    }
+                                    {place.reviews && (
+                                        <span className='text-grey'>
+                                            ({place.reviews.length})
+                                        </span>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -159,24 +213,37 @@ const Reservation = ({ place }) => {
                             <span>Your booking is protected</span>
                         </div>
                         <Separator />
-                        { !isSmallDevice && <div>
-                            <div className='pb-2 pt-4'>
-                                <h1 className='font-bold text-lg'>Price details</h1>
+                        {!isSmallDevice && (
+                            <div>
+                                <div className='pb-2 pt-4'>
+                                    <h1 className='font-bold text-lg'>
+                                        Price details
+                                    </h1>
+                                </div>
+                                <div className='py-2 flex flex-row justify-between'>
+                                    <span className='underline underline-offset-2 decoration-1'>
+                                        {place.pricePerNight}$ x{' '}
+                                        {numberOfNights} nights
+                                    </span>
+                                    <span>
+                                        {numberOfNights * place.pricePerNight}$
+                                    </span>
+                                </div>
+                                <div className='pt-2 pb-4 flex flex-row justify-between'>
+                                    <span className='underline underline-offset-2 decoration-1'>
+                                        Service fee
+                                    </span>
+                                    <span>0$</span>
+                                </div>
+                                <Separator />
+                                <div className='flex justify-between pt-6 font-bold'>
+                                    <span>Total(USD)</span>
+                                    <span>
+                                        {numberOfNights * place.pricePerNight}$
+                                    </span>
+                                </div>
                             </div>
-                            <div className='py-2 flex flex-row justify-between'>
-                                <span className='underline underline-offset-2 decoration-1'>{place.pricePerNight}$ x {numberOfNights} nights</span>
-                                <span>{numberOfNights * place.pricePerNight}$</span>                
-                            </div>
-                            <div className='pt-2 pb-4 flex flex-row justify-between'>
-                                <span className='underline underline-offset-2 decoration-1'>Service fee</span>
-                                <span>0$</span>                
-                            </div>
-                            <Separator />
-                            <div className='flex justify-between pt-6 font-bold'>
-                                <span>Total(USD)</span>
-                                <span>{numberOfNights * place.pricePerNight}$</span>
-                            </div>
-                        </div>}
+                        )}
                     </div>
                 </div>
             </div>
@@ -220,9 +287,9 @@ export async function getServerSideProps(pageContext) {
 
     const place = await sanityClient.fetch(placeQuery, { pageSlug })
     return {
-      props: {
-        place
-      }
+        props: {
+            place,
+        },
     }
 }
 

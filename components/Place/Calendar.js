@@ -4,7 +4,6 @@ import 'react-date-range/dist/theme/default.css'
 import { DateRange } from 'react-date-range'
 
 function Calendar({ range, setDateRange }) {
-    
     return (
         <div className='w-full flex justify-center'>
             <DateRange

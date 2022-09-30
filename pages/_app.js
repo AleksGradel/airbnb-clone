@@ -6,17 +6,17 @@ import { AuthContextProvider } from '../context/AuthContext'
 import { ReservationDetailsContextProvider } from '../context/ReservationDetailsContext'
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <AuthContextProvider>
-      <ReservationDetailsContextProvider>
-        <Provider store={store}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </Provider>
-      </ReservationDetailsContextProvider>
-    </AuthContextProvider>
-  )
+    return (
+        <AuthContextProvider>
+            <ReservationDetailsContextProvider>
+                <Provider store={store}>
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
+                </Provider>
+            </ReservationDetailsContextProvider>
+        </AuthContextProvider>
+    )
 }
 
 export default MyApp

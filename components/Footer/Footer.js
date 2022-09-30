@@ -4,17 +4,21 @@ import DefaultFooter from './fragments/DefaultFooter'
 import { useRouter } from 'next/router'
 
 const Footer = () => {
-  const router = useRouter()
-  const isSmallDevice = useMediaQuery({ query: '(max-width: 768px)'})
+    const router = useRouter()
+    const isSmallDevice = useMediaQuery({ query: '(max-width: 768px)' })
 
-  return (
-    <div>
-      { isSmallDevice
-        ? router.pathname !== '/place/[slug]' ? <StickyFooter /> : null
-        : <DefaultFooter />
-      }
-    </div>
-  )
+    return (
+        <div>
+            {isSmallDevice 
+            ? (
+                router.pathname !== '/place/[slug]' ? (
+                    <StickyFooter />
+                ) : null) 
+            : (
+                <DefaultFooter />
+            )}
+        </div>
+    )
 }
 
 export default Footer

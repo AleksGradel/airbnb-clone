@@ -21,13 +21,13 @@ export async function getStaticProps() {
         guestNumber,
         reviews[]
       }
-    `);
-  
+    `)
+
     return {
-      props: {
-        places
-      },
-    };
+        props: {
+            places,
+        },
+    }
 }
 
 export default searchResults

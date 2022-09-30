@@ -15,7 +15,7 @@ function mapView({ places }) {
                     </div>
                 </Link>
             </div>
-            <MapView places={places}/>
+            <MapView places={places} />
         </div>
     )
 }
@@ -30,13 +30,13 @@ export async function getStaticProps() {
         mainImage,
         pricePerNight
       }
-    `);
-  
+    `)
+
     return {
-      props: {
-        places
-      },
-    };
+        props: {
+            places,
+        },
+    }
 }
 
 export default mapView
