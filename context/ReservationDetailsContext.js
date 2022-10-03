@@ -2,9 +2,7 @@ import { format, addDays, differenceInDays } from 'date-fns'
 import {
     useState,
     createContext,
-    useContext,
-    useLayoutEffect,
-    useEffect,
+    useContext
 } from 'react'
 
 const ReservationDetailsContext = createContext()
