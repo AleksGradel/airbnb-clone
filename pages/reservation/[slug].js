@@ -11,6 +11,7 @@ import DialogSmall from '../../components/fragments/DialogSmall'
 import { useState } from 'react'
 import Calendar from '../../components/Place/Calendar'
 import { useMediaQuery } from 'react-responsive'
+import GuestsSelector from '../../components/fragments/GuestsSelector'
 
 const Reservation = ({ place }) => {
     const {
@@ -167,7 +168,7 @@ const Reservation = ({ place }) => {
                                         setShowGuestsEditor(false)
                                     }
                                 >
-                                    <p>goscie </p>
+                                    <GuestsSelector maxGuestNumber={place.guestNumber} />
                                 </DialogSmall>
                             </div>
                         </div>

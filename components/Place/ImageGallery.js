@@ -31,7 +31,7 @@ const ImageGallery = ({ mainImage, images }) => {
                 <SingleImage src={mainImage} />
             </div>
             <div className='hidden md:flex flex-wrap relative w-1/2 h-4/6'>
-                {images.length >= 4
+                { images && images.length >= 4
                     ? images.slice(0, 4).map(
                           (image) =>
                               image && (
