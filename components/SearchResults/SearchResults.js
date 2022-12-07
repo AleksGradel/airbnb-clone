@@ -14,7 +14,7 @@ const SearchResults = ({ places }) => {
     )
 
     return (
-        <div>
+        <>
             {results.length > 0 ? (
                 <div className='p-12 xl:p-24 grid justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4'>
                     {results.map(
@@ -24,7 +24,7 @@ const SearchResults = ({ places }) => {
                                     href={`place/${result.slug.current}`}
                                     key={result?._id}
                                 >
-                                    <div>
+                                    <>
                                         <Tile
                                             img={
                                                 result.mainImage
@@ -37,7 +37,7 @@ const SearchResults = ({ places }) => {
                                             rates={result?.reviews}
                                             title={result?.title}
                                         />
-                                    </div>
+                                    </>
                                 </Link>
                             )
                     )}
@@ -55,7 +55,7 @@ const SearchResults = ({ places }) => {
                     </div>
                 </div>
             )}
-        </div>
+        </>
     )
 }
 

@@ -86,7 +86,7 @@ const Reservation = ({ place }) => {
                                         setShowDatesEditor(false)
                                     }
                                 >
-                                    <div>
+                                    <>
                                         <div className='mb-2 px-2 h-12'>
                                             {numberOfNights ? (
                                                 <div className='flex flex-col'>
@@ -140,7 +140,7 @@ const Reservation = ({ place }) => {
                                                 Save
                                             </button>
                                         </div>
-                                    </div>
+                                    </>
                                 </DialogSmall>
                             </div>
                         </div>
@@ -215,7 +215,7 @@ const Reservation = ({ place }) => {
                         </div>
                         <Separator />
                         {!isSmallDevice && (
-                            <div>
+                            <>
                                 <div className='pb-2 pt-4'>
                                     <h1 className='font-bold text-lg'>
                                         Price details
@@ -243,7 +243,7 @@ const Reservation = ({ place }) => {
                                         {numberOfNights * place.pricePerNight}$
                                     </span>
                                 </div>
-                            </div>
+                            </>
                         )}
                     </div>
                 </div>

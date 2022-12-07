@@ -26,10 +26,10 @@ function ReservationBox({
         <div className='border border-grey-light rounded-lg shadow-md m-4 p-6'>
             <div className='flex flex-col'>
                 <div className='flex flex-col lg:flex-row justify-between'>
-                    <div>
+                    <>
                         <span className='font-bold'>${pricePerNight} </span>
                         <span>night</span>
-                    </div>
+                    </>
                     <div className='flex flex-row mb-4 gap-2'>
                         <Rating rates={rates} />
                         <span
@@ -82,13 +82,13 @@ function ReservationBox({
                                         </span>
                                     )}
                                 </div>
-                                <div>
+                                <>
                                     <FaChevronDown />
-                                </div>
+                                </>
                             </div>
                         }
                         items={
-                            <div>
+                            <>
                                 <GuestsSelector
                                     maxGuestNumber={maxGuestNumber}
                                 />
@@ -96,12 +96,12 @@ function ReservationBox({
                                     This place has a maximum of {maxGuestNumber}{' '}
                                     guests, not including infants.
                                 </span>
-                            </div>
+                            </>
                         }
                     />
                 </div>
                 {numberOfNights ? (
-                    <div>
+                    <>
                         <div className='my-2 flex flex-col'>
                             <button
                                 onClick={reserveAction}
@@ -130,7 +130,7 @@ function ReservationBox({
                             <span>Total before taxes</span>
                             <span>${totalPrice}</span>
                         </div>
-                    </div>
+                    </>
                 ) : null}
             </div>
         </div>

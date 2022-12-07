@@ -3,7 +3,7 @@ import Avatar from '../fragments/Avatar'
 
 const Reviews = ({ place }) => {
     return (
-        <div>
+        <>
             {place.reviews ? (
                 place.reviews.map((review) => (
                     <div key={review._key} className='my-8'>
@@ -29,7 +29,7 @@ const Reviews = ({ place }) => {
             ) : (
                 <div className='my-8 font-bold text-2xl'>No reviews (yet)</div>
             )}
-        </div>
+        </>
     )
 }
 

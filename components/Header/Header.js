@@ -60,21 +60,21 @@ function Header() {
                             />
                         ) : (
                             <div className='flex flex-row justify-center content-center gap-12 text-sm'>
-                                <div>
+                                <>
                                     <span className='font-bold cursor-pointer underline underline-offset-8'>
                                         Stays
                                     </span>
-                                </div>
-                                <div>
+                                </>
+                                <>
                                     <span className='font-bold cursor-pointer hover:text-grey hover:underline hover:underline-offset-8'>
                                         Experiences
                                     </span>
-                                </div>
-                                <div>
+                                </>
+                                <>
                                     <span className='font-bold cursor-pointer hover:text-grey hover:underline hover:underline-offset-8'>
                                         Online Experiences
                                     </span>
-                                </div>
+                                </>
                             </div>
                         )}
                         {router.pathname !== '/reservation/[slug]' ? (
@@ -112,13 +112,13 @@ function Header() {
                     <SearchSmall />
                 ) : (
                     <div className='flex flex-row w-full justify-between items-center'>
-                        <div>
+                        <>
                             <Link href='/'>
                                 <div className='cursor-pointer hover:bg-grey-super-light rounded-full p-2 text-lg'>
                                     <FaAngleLeft />
                                 </div>
                             </Link>
-                        </div>
+                        </>
                         <div className='flex flex-row gap-2 text-lg text-grey'>
                             <span className='cursor-pointer hover:bg-grey-super-light rounded-full p-2'>
                                 <FaRegShareSquare />
@@ -137,8 +137,8 @@ function Header() {
         <div className='w-full sticky top-0 inset-x-0 z-10 border-b border-grey-light  bg-white'>
             {isSmallDevice ? (
                 router.pathname === '/login' ||
-                router.pathname === '/signin' ||
-                router.pathname !== '/reservation/[slug]' ? null : (
+                router.pathname === '/signin' 
+                 ? null : (
                     <SmallHeader />
                 )
             ) : (

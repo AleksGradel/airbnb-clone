@@ -54,7 +54,7 @@ const Place = ({ place }) => {
     }
 
     return (
-        <div>
+        <>
             <div className='px-2 sm:px-12 xl:px-24 pt-4 pb-20'>
                 <div className='flex flex-col-reverse md:flex-col'>
                     <div className=''>
@@ -95,18 +95,18 @@ const Place = ({ place }) => {
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <>
                         <ImageGallery
                             mainImage={place.mainImage}
                             images={place.images}
                         />
-                    </div>
+                    </>
                 </div>
                 {isSmallDevice && <Separator />}
                 <div className='flex'>
                     <div className='basis-full md:basis-7/12'>
                         <div className='flex justify-between my-4'>
-                            <div>
+                            <>
                                 <h2 className='text-xl font-bold'>
                                     {place.type} hosted by {place.hostName}
                                 </h2>
@@ -125,13 +125,13 @@ const Place = ({ place }) => {
                                     {place.bedroomNumber}{' '}
                                     {place.bedroomNumber > 1 ? 'baths' : 'bath'}
                                 </div>
-                            </div>
-                            <div>
+                            </>
+                            <>
                                 <Avatar
                                     image={place.hostAvatar}
                                     alt={place.hostName}
                                 />
-                            </div>
+                            </>
                         </div>
                         <Separator />
                         <Description description={place.description} />
@@ -206,7 +206,7 @@ const Place = ({ place }) => {
                     pricePerNight={place.pricePerNight}
                 />
             ) : null}
-        </div>
+        </>
     )
 }
 

@@ -49,7 +49,7 @@ const Description = ({ description }) => {
                                     style={{ minWidth: '80vh' }}
                                     className='w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'
                                 >
-                                    <div>
+                                    <>
                                         <button
                                             onClick={() =>
                                                 setShowDesription(false)
@@ -58,7 +58,7 @@ const Description = ({ description }) => {
                                         >
                                             <FaTimes />
                                         </button>
-                                    </div>
+                                    </>
                                     <Dialog.Title
                                         as='h3'
                                         className='my-6 text-2xl font-bold'

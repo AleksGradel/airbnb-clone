@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 
 const Dropdown = ({ button, items, dropdownWidth, marginTop }) => {
     return (
-        <div>
+        <>
             <Menu as='div' className='relative inline-block w-full'>
                 <Menu.Button className='w-full'>{button}</Menu.Button>
                 <Transition
@@ -24,7 +24,7 @@ const Dropdown = ({ button, items, dropdownWidth, marginTop }) => {
                     </Menu.Items>
                 </Transition>
             </Menu>
-        </div>
+        </>
     )
 }
 

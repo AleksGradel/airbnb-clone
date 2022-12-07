@@ -4,14 +4,14 @@ import Header from './Header/Header'
 
 function Layout({ children }) {
     return (
-        <div>
+        <>
             <Head>
                 <title>Airbnb clone</title>
             </Head>
             <Header />
             <main>{children}</main>
             <Footer />
-        </div>
+        </>
     )
 }
 

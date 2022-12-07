@@ -107,14 +107,16 @@ const ImageGallery = ({ mainImage, images }) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className='mx-4 sm:mx-12 md:mx-24 my-4'>
-                                                <SingleImage src={mainImage} />
+                                            <div className='mx-4 sm:mx-12 md:mx-24 my-4 flex flex-wrap'>
+                                                <div className='relative w-1/2 aspect-square p-1'>
+                                                    <SingleImage src={mainImage} />
+                                                </div>
                                                 {images
                                                     ? images.map(
                                                           (image) =>
                                                               image && (
                                                                   <div
-                                                                      className='basis-1/2 p-1'
+                                                                      className='basis-1/2 p-1 relative w-1/2 aspect-square'
                                                                       key={
                                                                           image._key
                                                                       }

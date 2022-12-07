@@ -52,7 +52,7 @@ const GuestsSelector = ({ maxGuestNumber }) => {
     )
 
     return (
-        <div>
+        <>
             <SelectorRow
                 label='Adults'
                 description='Age 13+'
@@ -76,7 +76,7 @@ const GuestsSelector = ({ maxGuestNumber }) => {
                 decrementAction={() => decrementInfantsCount()}
                 incrementAction={() => incrementInfantsCount()}
             />
-        </div>
+        </>
     )
 }
 

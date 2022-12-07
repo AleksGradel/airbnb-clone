@@ -31,7 +31,7 @@ function MapView({ places }) {
     )
 
     return (
-        <div>
+        <>
             <Map
                 initialViewState={{
                     latitude: 49.8,
@@ -69,19 +69,19 @@ function MapView({ places }) {
                                     <span className='font-bold text-md'>
                                         {popupInfo?.title}
                                     </span>
-                                    <div>
+                                    <>
                                         <span className='font-bold'>
                                             ${popupInfo?.pricePerNight}
                                         </span>
                                         <span className='ml-1'>night</span>
-                                    </div>
+                                    </>
                                 </div>
                             </a>
                         </Link>
                     </Popup>
                 )}
             </Map>
-        </div>
+        </>
     )
 }
 

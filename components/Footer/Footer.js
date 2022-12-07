@@ -8,7 +8,7 @@ const Footer = () => {
     const isSmallDevice = useMediaQuery({ query: '(max-width: 768px)' })
 
     return (
-        <div>
+        <>
             {isSmallDevice 
             ? (
                 router.pathname !== '/place/[slug]' ? (
@@ -17,7 +17,7 @@ const Footer = () => {
             : (
                 <DefaultFooter />
             )}
-        </div>
+        </>
     )
 }
 

@@ -6,7 +6,7 @@ const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN
 
 const LocationMap = ({ latitude, longitude }) => {
     return (
-        <div>
+        <>
             <Map
                 initialViewState={{
                     latitude: latitude,
@@ -23,7 +23,7 @@ const LocationMap = ({ latitude, longitude }) => {
                     </div>
                 </Marker>
             </Map>
-        </div>
+        </>
     )
 }
 

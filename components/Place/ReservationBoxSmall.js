@@ -3,7 +3,7 @@ import { Dialog, Menu, Transition } from '@headlessui/react'
 import { FaTimes, FaChevronDown } from 'react-icons/fa'
 import GuestsSelector from '../fragments/GuestsSelector'
 import Separator from '../fragments/Separator'
-import { useSelector } from 'react-redux'
+import { useReservationDetails } from '../../context/ReservationDetailsContext'
 
 const ReservationBoxSmall = ({
     checkinDate,
@@ -15,7 +15,8 @@ const ReservationBoxSmall = ({
     maxGuestNumber,
 }) => {
     const [showReservationBox, setShowReservationBox] = useState(false)
-    const totalGuestNumber = useSelector((state) => state.guests.total)
+    const {adultsCount, childrenCount} = useReservationDetails()
+    const totalGuestNumber = adultsCount + childrenCount
 
     return (
         <div className='absolute'>
@@ -24,19 +25,19 @@ const ReservationBoxSmall = ({
                             flex justify-between items-center px-4'
             >
                 {showReservationBox ? null : (
-                    <div>
-                        <div>
+                    <>
+                        <>
                             <span className='text-lg font-bold'>
                                 {pricePerNight}$
                             </span>
                             <span className='ml-1 text-sm'>night</span>
-                        </div>
-                        <div>
+                        </>
+                        <>
                             <span className='text-xs font-bold underline underline-offset-2'>
                                 {checkinDate} - {checkoutDate}
                             </span>
-                        </div>
-                    </div>
+                        </>
+                    </>
                 )}
                 <div className={`${showReservationBox ? 'w-full' : ''}`}>
                     {!showReservationBox ? (
@@ -141,9 +142,9 @@ const ReservationBoxSmall = ({
                                                                     </span>
                                                                 )}
                                                             </div>
-                                                            <div>
+                                                            <>
                                                                 <FaChevronDown />
-                                                            </div>
+                                                            </>
                                                         </Menu.Button>
                                                         <Transition
                                                             as={Fragment}

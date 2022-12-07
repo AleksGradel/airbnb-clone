@@ -6,9 +6,9 @@ const SearchSmall = () => {
             className='flex items-center justify-items-stretch w-full rounded-full border border-grey-light 
         pl-2 md:pl-6 h-12 pr-2 shadow-md text-grey-dark'
         >
-            <div>
+            <>
                 <FaSearch />
-            </div>
+            </>
             <div className='ml-1 md:ml-6 grow text-xs'>
                 <div className='font-bold'>Where to?</div>
                 <div className='flex gap-1 text-grey'>
