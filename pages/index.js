@@ -31,7 +31,7 @@ export default function Home({ places }) {
                                 href={`place/${place.slug.current}`}
                                 key={place?._id}
                             >
-                                <a>
+                                <div>
                                     <Tile
                                         img={
                                             place.mainImage
@@ -42,7 +42,7 @@ export default function Home({ places }) {
                                         rates={place.reviews}
                                         title={place?.title}
                                     />
-                                </a>
+                                </div>
                             </Link>
                         )
                 )}

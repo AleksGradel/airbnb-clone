@@ -11,13 +11,13 @@ const UserLink = forwardRef((props, ref) => {
     let { href, children, ...rest } = props
     return (
         <Link href={href}>
-            <a
+            <p
                 className='p-2 text-sm hover:bg-grey-super-light'
                 ref={ref}
                 {...rest}
             >
                 {children}
-            </a>
+            </p>
         </Link>
     )
 })

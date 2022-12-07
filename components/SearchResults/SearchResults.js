@@ -24,7 +24,7 @@ const SearchResults = ({ places }) => {
                                     href={`place/${result.slug.current}`}
                                     key={result?._id}
                                 >
-                                    <a>
+                                    <div>
                                         <Tile
                                             img={
                                                 result.mainImage
@@ -37,7 +37,7 @@ const SearchResults = ({ places }) => {
                                             rates={result?.reviews}
                                             title={result?.title}
                                         />
-                                    </a>
+                                    </div>
                                 </Link>
                             )
                     )}
