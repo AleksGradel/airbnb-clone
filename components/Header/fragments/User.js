@@ -40,7 +40,7 @@ const User = () => {
                 </div>
             }
             items={
-                <div className='mt-2 w-56 py-1 flex flex-col gap-2'>
+                <div className='mt-2 w-56 py-1 flex flex-col'>
                     {!user && (
                         <Menu.Item>
                             <UserLink href='/signin' ref={inputRef}>

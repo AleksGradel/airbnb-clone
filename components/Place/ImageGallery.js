@@ -14,10 +14,8 @@ const SingleImage = ({ src }) => {
         <Image
             alt='img'
             src={urlFor(src).url()}
-            layout='responsive'
+            fill
             objectFit='cover'
-            width={100}
-            height={100}
         />
     )
 }
@@ -27,7 +25,7 @@ const ImageGallery = ({ mainImage, images }) => {
 
     return (
         <div className='flex h-4/6 my-2 w-full relative'>
-            <div className='w-full md:w-1/2 h-1/2 relative p-1'>
+            <div className='w-full md:w-1/2 h-1/2 relative p-1 aspect-square'>
                 <SingleImage src={mainImage} />
             </div>
             <div className='hidden md:flex flex-wrap relative w-1/2 h-4/6'>
@@ -36,7 +34,7 @@ const ImageGallery = ({ mainImage, images }) => {
                           (image) =>
                               image && (
                                   <div
-                                      className='basis-1/2 p-1'
+                                      className='basis-1/2 p-1 relative aspect-square'
                                       key={image._key}
                                   >
                                       <SingleImage src={image} />
