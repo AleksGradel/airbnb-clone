@@ -33,9 +33,11 @@ const SearchResults = ({ places }) => {
                                                       ).url()
                                                     : ''
                                             }
-                                            price={result?.pricePerNight}
-                                            rates={result?.reviews}
-                                            title={result?.title}
+                                            city={result.city}
+                                            country={result.country}
+                                            price={result.pricePerNight}
+                                            rates={result.reviews}
+                                            title={result.title}
                                         />
                                     </>
                                 </Link>

@@ -34,7 +34,7 @@ const User = () => {
             dropdownWidth='56'
             marginTop='mt-2'
             button={
-                <div className='flex justify-between items-center p-1 gap-3 rounded-full border border-grey-light h-10 hover:shadow-md cursor-pointer'>
+                <div className='flex justify-between items-center p-1 gap-3 rounded-full border border-grey-light h-10 hover:shadow-md cursor-pointer w-20'>
                     <FaBars className='ml-2' />
                     <FaUserCircle className='text-grey text-3xl' />
                 </div>

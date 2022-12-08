@@ -15,9 +15,9 @@ export default function Home({ places }) {
 
     return (
         <div className='flex flex-col w-full min-h-screen'>
-            <div className='absolute bottom-36 w-full flex justify-center'>
+            <div className='fixed bottom-28 w-full flex justify-center'>
                 <Link href='/mapView'>
-                    <div className='fixed z-50 cursor-pointer bg-grey-dark text-white font-bold py-4 px-6 rounded-full shadow hover:scale-105 flex flex-row items-center gap-2 text-sm'>
+                    <div className='z-50 cursor-pointer bg-grey-dark text-white font-bold py-4 px-6 rounded-full shadow hover:scale-105 flex flex-row items-center gap-2 text-sm'>
                         <span>Show map</span>
                         <FaMap />
                     </div>
@@ -38,9 +38,11 @@ export default function Home({ places }) {
                                                 ? urlFor(place.mainImage).url()
                                                 : ''
                                         }
-                                        price={place?.pricePerNight}
+                                        city={place.city}
+                                        country={place.country}
+                                        price={place.pricePerNight}
                                         rates={place.reviews}
-                                        title={place?.title}
+                                        title={place.title}
                                     />
                                 </>
                             </Link>
@@ -56,6 +58,8 @@ export async function getStaticProps() {
     *[_type == "place"] {
       _id,
       title,
+      city,
+      country,
       slug,
       mainImage,
       pricePerNight,

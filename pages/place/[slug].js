@@ -17,6 +17,7 @@ import format from 'date-fns/format'
 import Rating from '../../components/fragments/Rating'
 import { FaRegHeart, FaRegShareSquare } from 'react-icons/fa'
 import { useRef } from 'react'
+import Head from 'next/head'
 
 const Place = ({ place }) => {
     const { user } = useAuth()
@@ -55,6 +56,9 @@ const Place = ({ place }) => {
 
     return (
         <>
+            <Head>
+                <title>{place.title} - Airbnb clone</title>
+            </Head>
             <div className='px-2 sm:px-12 xl:px-24 pt-4 pb-20'>
                 <div className='flex flex-col-reverse md:flex-col'>
                     <div className=''>

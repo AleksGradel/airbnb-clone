@@ -78,10 +78,10 @@ function Header() {
                             </div>
                         )}
                         {router.pathname !== '/reservation/[slug]' ? (
-                            <div className='hidden sm:flex flex-row items-center gap-4 text-grey-dark'>
-                                <div className='text-sm font-bold cursor-pointer rounded-full p-2 hover:bg-grey-super-light'>
+                            <div className='hidden sm:flex flex-row items-center gap-1 text-grey-dark'>
+                                <a className='whitespace-nowrap text-sm font-bold cursor-pointer rounded-full p-3 hover:bg-grey-super-light'>
                                     Become a host
-                                </div>
+                                </a>
                                 <LanguageSelector />
                                 <User />
                             </div>

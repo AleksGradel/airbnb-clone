@@ -12,6 +12,7 @@ import { useState } from 'react'
 import Calendar from '../../components/Place/Calendar'
 import { useMediaQuery } from 'react-responsive'
 import GuestsSelector from '../../components/fragments/GuestsSelector'
+import Head from 'next/head'
 
 const Reservation = ({ place }) => {
     const {
@@ -30,6 +31,9 @@ const Reservation = ({ place }) => {
 
     return (
         <div className='px-2 sm:px-8 py-10 min-h-screen'>
+            <Head>
+                <title>{place.title} - Reservation - Airbnb clone</title>
+            </Head>
             <div className='text-md sm:text-3xl flex flex-row items-center gap-4 mb-6'>
                 <Link href='/'>
                     <div className='cursor-pointer hover:bg-grey-super-light rounded-full p-2'>

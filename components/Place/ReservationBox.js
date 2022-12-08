@@ -25,19 +25,26 @@ function ReservationBox({
     return (
         <div className='border border-grey-light rounded-lg shadow-md m-4 p-6'>
             <div className='flex flex-col'>
-                <div className='flex flex-col lg:flex-row justify-between'>
-                    <>
+                <div className='flex flex-col md:flex-row justify-between'>
+                    <div>
                         <span className='font-bold'>${pricePerNight} </span>
                         <span>night</span>
-                    </>
-                    <div className='flex flex-row mb-4 gap-2'>
+                    </div>
+                    <div className='flex flex-row mb-4 gap-1'>
                         <Rating rates={rates} />
-                        <span
-                            onClick={handleReviewsClick}
-                            className='text-grey underline decoration-1 underline-offset-2 cursor-pointer'
-                        >
-                            {reviewsCount}
-                        </span>
+                        {rates?.length 
+                            ?   <>
+                                    <span>&#8226;</span>
+                                    <span
+                                        onClick={handleReviewsClick}
+                                        className='text-grey underline decoration-1 underline-offset-2 cursor-pointer'
+                                    >
+                                        {reviewsCount}
+                                    </span>
+                                </>
+                            : null
+                        }
+                        
                     </div>
                 </div>
                 <div className='mb-2 border border-grey rounded-lg cursor-pointer'>
