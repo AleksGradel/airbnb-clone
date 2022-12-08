@@ -2,12 +2,14 @@ import { useState, Fragment } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { Menu, Transition } from '@headlessui/react'
 import GuestsSelector from '../../fragments/GuestsSelector'
-import { useSelector } from 'react-redux'
 import Link from 'next/link'
+import { useReservationDetails } from '../../../context/ReservationDetailsContext'
 
 const SearchExpanded = () => {
     const [searchActive, setSearchActive] = useState(false)
-    const totalGuestNumber = useSelector((state) => state.guests.total)
+    const { adultsCount, childrenCount } = useReservationDetails()
+
+    const totalGuestNumber = adultsCount + childrenCount
 
     return (
         <div
