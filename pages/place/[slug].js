@@ -59,7 +59,7 @@ const Place = ({ place }) => {
             <Head>
                 <title>{place.title} - Airbnb clone</title>
             </Head>
-            <div className='px-2 sm:px-12 xl:px-24 pt-4 pb-20'>
+            <div className='px-2 sm:px-12 xl:px-80 pt-4 pb-20'>
                 <div className='flex flex-col-reverse md:flex-col'>
                     <div className=''>
                         <p className='text-2xl font-bold'>{place.title}</p>

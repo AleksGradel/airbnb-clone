@@ -46,8 +46,7 @@ const Description = ({ description }) => {
                                 leaveTo='opacity-0 scale-95'
                             >
                                 <Dialog.Panel
-                                    style={{ minWidth: '80vh' }}
-                                    className='w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'
+                                    className='max-w-screen md:w-4/5 transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'
                                 >
                                     <>
                                         <button

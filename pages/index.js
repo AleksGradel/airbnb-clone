@@ -15,9 +15,9 @@ export default function Home({ places }) {
 
     return (
         <div className='flex flex-col w-full min-h-screen'>
-            <div className='fixed bottom-28 w-full flex justify-center'>
+            <div className='z-50 fixed bottom-28 w-full flex justify-center'>
                 <Link href='/mapView'>
-                    <div className='z-50 cursor-pointer bg-grey-dark text-white font-bold py-4 px-6 rounded-full shadow hover:scale-105 flex flex-row items-center gap-2 text-sm'>
+                    <div className='cursor-pointer bg-grey-dark text-white font-bold py-4 px-6 rounded-full shadow hover:scale-105 flex flex-row items-center gap-2 text-sm'>
                         <span>Show map</span>
                         <FaMap />
                     </div>

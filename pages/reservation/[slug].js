@@ -30,7 +30,7 @@ const Reservation = ({ place }) => {
     const totalGuestCount = adultsCount + childrenCount
 
     return (
-        <div className='px-2 sm:px-8 py-10 min-h-screen'>
+        <div className='px-2 sm:px-8 xl:px-80 py-10 min-h-screen'>
             <Head>
                 <title>{place.title} - Reservation - Airbnb clone</title>
             </Head>
