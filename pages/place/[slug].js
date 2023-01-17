@@ -110,7 +110,7 @@ const Place = ({ place }) => {
                 <div className='flex'>
                     <div className='basis-full md:basis-7/12'>
                         <div className='flex justify-between my-4'>
-                            <>
+                            <div>
                                 <h2 className='text-xl font-bold'>
                                     {place.type} hosted by {place.hostName}
                                 </h2>
@@ -129,13 +129,13 @@ const Place = ({ place }) => {
                                     {place.bedroomNumber}{' '}
                                     {place.bedroomNumber > 1 ? 'baths' : 'bath'}
                                 </div>
-                            </>
-                            <>
+                            </div>
+                            <div>
                                 <Avatar
                                     image={place.hostAvatar}
                                     alt={place.hostName}
                                 />
-                            </>
+                            </div>
                         </div>
                         <Separator />
                         <Description description={place.description} />

@@ -4,7 +4,7 @@ import { sanityClient } from '../sanity'
 
 const searchResults = ({ places }) => {
     return (
-        <div className='flex flex-col h-screen w-full'>
+        <div className='flex flex-col min-h-screen w-full'>
             <SearchResults places={places} />
         </div>
     )
@@ -16,6 +16,9 @@ export async function getStaticProps() {
         _id,
         title,
         slug,
+        city, 
+        state,
+        country,
         mainImage,
         pricePerNight,
         guestNumber,
